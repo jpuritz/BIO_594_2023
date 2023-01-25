@@ -11,8 +11,8 @@ Feel free to come by during this time without an appointment, otherwise schedule
 #### Wednesdays 1:00 PM to 3:00PM
 #### Woodward Hall Room 115
 
-## Masking
-Masks are **required at all times** within our classroom.  Students without masks will be asked to leave.
+## Masking Policy
+Masks are **required at all times** within our classroom.  Students without masks will be asked to leave.  The masking policy will be revisited throughout the semester.  Thank you for your patience and compliance.
 
 ## Course Description
 The advent of next-generation sequencing (NGS) has rapidly transcended population genetics to population genomics.  Sequencer outputs have expanded from kilobases to gigabases while becoming over 30,000 times less expensive.  This allows population levels studies to use thousands of genetic markers across the entire genome, and to survey both neutral and adaptive loci.  However, to properly harness these new datasets and technology, researchers must have a firm grasp on population genetics theory. 
