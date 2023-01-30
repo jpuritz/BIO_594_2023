@@ -39,6 +39,8 @@ Readings will be selected from web based tutorials, package vignettes, software 
 
 For each chapter discussed in **Part I** of class, three students will be assigned speciic roles to facilitate discussion:
 
+**[SignUp Sheet](Readings/SignUp.md)
+
 | Role| | Responsibilities|
 |------|:--:|--------------|
 | Lecturer |<img src="https://media.tenor.com/xR1r8YpN8CsAAAAC/himym-how-i-met-your-mother.gif"  width="200" />| The Lecturer must compile a 10-20 min presentation that summarizes and highlights the main topics presented in the chapter.  Every student must be a lecturer for at least one book chapter.|
