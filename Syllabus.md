@@ -39,7 +39,7 @@ Readings will be selected from web based tutorials, package vignettes, software 
 
 For each chapter discussed in **Part I** of class, three students will be assigned speciic roles to facilitate discussion:
 
-**[SignUp Sheet](Readings/SignUp.md)
+**[SignUp Sheet](Readings/SignUp.md)**
 
 | Role| | Responsibilities|
 |------|:--:|--------------|
