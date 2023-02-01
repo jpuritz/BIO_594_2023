@@ -2,7 +2,7 @@
 
 | Date    | Chapter    | Lecturer | Discussion Leader | Scribe |
 | ------- | ---------- | -------- | ----------------- | ------ |
-| 2/8/23  | Appendix   | Jon      |                   |        |
+| 2/8/23  | Appendix   | Jon      |                   |   Jon     |
 | 2/8/23  | Chapter 5  |          |                   |        |
 | 2/15/23 | Chapter 6  |          |                   |        |
 | 2/15/23 | Chapter 7  |          |                   |        |
