@@ -6,10 +6,10 @@
 | 2/8/23  | Chapter 5  |          |                   |        |
 | 2/15/23 | Chapter 6  | Jacob    |                   |        |
 | 2/15/23 | Chapter 7  |          |                   |        |
-| 2/22/23 | Chapter 8  |          |                   | Jacob  |
+| 2/22/23 | Chapter 8  |  Marissa        |                   | Jacob  |
 | 2/22/23 | Chapter 9  |          |                   |        |
 | 3/1/23  | Chapter 10 |          |                   |        |
 | 3/1/23  | Chapter 11 |          |                   |        |
-| 3/1/23  | Chapter 12 |          |                   |        |
+| 3/1/23  | Chapter 12 |          |          Marissa         |        |
 | 3/8/23  | Chapter 15 |          |       Jacob       |        |
-| 3/8/23  | Chapter 16 |          |                   |        |
+| 3/8/23  | Chapter 16 |          |                   |       Marissa |
