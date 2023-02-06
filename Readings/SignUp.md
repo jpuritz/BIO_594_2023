@@ -3,8 +3,8 @@
 | Date    | Chapter    | Lecturer | Discussion Leader | Scribe |
 | ------- | ---------- | -------- | ----------------- | ------ |
 | 2/8/23  | Appendix   | Jon      |                   |        |
-| 2/8/23  | Chapter 5  |          |                 |    Angel    |
-| 2/15/23 | Chapter 6  | Jacob    |       Megan       |   Keegan     |
+| 2/8/23  | Chapter 5  |          |                   | Angel  |
+| 2/15/23 | Chapter 6  | Jacob    |       Megan       | Keegan |
 | 2/15/23 | Chapter 7  |          |                  |        |
 | 2/22/23 | Chapter 8  |  Marissa        |   Angel                | Jacob  |
 | 2/22/23 | Chapter 9  |          |                   |  Keegan|
