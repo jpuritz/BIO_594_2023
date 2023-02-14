@@ -175,6 +175,7 @@ $$ x^2 = \frac{(4-3.025)^2}{3.025} + \frac{(3-2.025)^2}{2.025} + \frac{(3-4.95)^
 
 ### 4. Take a look at Gel C below:
 
+
 ![img](./img/February%209%2C%202023/IMG_0524.jpeg)
 
 Gel C is the banding pattern from two AFLP markers (the upper and lower sets of bands).
@@ -183,4 +184,23 @@ Gel C is the banding pattern from two AFLP markers (the upper and lower sets of 
     
     B. Estimate the percentage of *band-present* individuals (not the overall frequencies) that are heterozygous at each of the two markers.  What biological principle does the difference between these two percentages illustrate?
 
+**Answer Set A**
+\
+The only way I could put this problem into context was by picturing it similar to blood type
+|Genotype|Count|Expected
+|--------|-----|--------|
+|$$ I^AI^A, I^AI^O$$|6|$$p^2 + 2pr$$|
+|$$ I^BI^B, I^BI^O$$|101|$$q^2 + 2qr$$|
+|$$ I^AI^B$$|39|$$2pq$$|
+|$$ I^OI^O$$|14|$$r^2$$|
 
+Genotype frequency:
+$$A=\frac{6}{160}= 0.375$$
+$$B=\frac{101}{160}=0.63$$
+$$AB=\frac{39}{160}=0.24$$
+$$O=\frac{14}{160}=0.088$$
+
+frequency of null allele:
+$$ \sqrt{0.088} = 0.297$$
+
+**Answer Set B**
