@@ -87,6 +87,7 @@ $$
         | *S-S-*   | 61/127 = 0.480  |
 
 - Allele Frequencies:
+
 $$
     p = S = \frac{2*NSS + NSS-}{2N} = \frac{2*11 + 55}{2*127} = \frac{77}{254} = 0.303\\
     
