@@ -180,4 +180,4 @@ N/N = 14/160 = 0.087
 Frequency of null alleles = square root of 0.0875 = 0.296. 
 
 4B.
-... ran out of time!
+... ran out of time before class! will come back to this and finish + post in proper formatting
