@@ -63,29 +63,29 @@ $$  P_x = \frac {5!}{(5-4)!* 4!} * \frac{1}{2}^4 * \frac{1}{2}^1 = \frac{5}{32}$
  **Answer Set A**
  
 genotype frequency :
-$$ SS = 11/127 = 0.087 $$
-$$ SS^- = 55/127 = 0.43 $$
-$$ S^-S^- = 61/127 = 0.48$$
+$$SS = 11/127 = 0.087$$
+$$SS^- = 55/127 = 0.43$$
+$$S^-S^- = 61/127 = 0.48$$
 
 allelic frequency: 
-$$ S = \frac{2(11) + 55}{2(127)} = 0.3 $$
-$$ S^- = \frac {2(61) + 55}{2(127)} - 0.7$$
+$$S = \frac{2(11) + 55}{2(127)} = 0.3$$
+$$S^- = \frac {2(61) + 55}{2(127)} - 0.7$$
 
  **Answer Set B**
 
  genotypic frequencies under Hardy-Weinberg:
-$$ SS = 0.3^2 * 127= 11.43$$
-$$ S^-S^- = .7^2 * 127 = 62.23 $$
-$$ SS^- = (2)(.3)(.7) * 127  = 53.34$$
+$$SS = 0.3^2 * 127= 11.43$$
+$$S^-S^- = .7^2 * 127 = 62.23$$
+$$SS^- = (2)(.3)(.7) * 127  = 53.34$$
    
    Chi square: There are 1 degrees of freedom due to their being 3 genotypes and 2 alleles
-$$ x^2 = \frac{(11-11.43)^2}{11.43} + \frac{(61-62.23)^2}{62.23} + \frac{(55-53.34)^2}{53.34} = 0.016 + 0.052 + 0.024 = 0.09$$
+$$x^2 = \frac{(11-11.43)^2}{11.43} + \frac{(61-62.23)^2}{62.23} + \frac{(55-53.34)^2}{53.34} = 0.016 + 0.052 + 0.024 = 0.09$$
     1.2 < 3.84 so observed frequencies agree with HWE expectations
 
  **Answer Set C**
 \
     expected heterozygosity:
-$$ 2pq = 53.34$$
+$$2pq = 53.34$$
 \
     observed heterozygosity:
     $$frequency \space of \space SS^-$$
@@ -213,8 +213,8 @@ $$160p^2 + 160p = 45$$
 $$p^2 +p = 45/160$$
 $$p^2 + p - 0.28125 = 0$$
 $$p = 0.229$$
-$$2pq = (2)(0.229)(0.5) = 0.229$$
-$$2pqN = (0.229)(160) = 36.64 $$
+$$2pq =(2)(0.229)(0.5) = 0.229$$
+$$2pqN = (0.229)(160) = 36.64$$
 \
 Top band:
 $$p^2N+2pqN =140$$
