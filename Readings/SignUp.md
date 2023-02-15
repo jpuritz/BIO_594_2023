@@ -4,7 +4,7 @@
 | ------- | ---------- | --------- | ----------------- | --------- |
 | 2/8/23  | Appendix   | Jon       |                   |           |
 | 2/8/23  | Chapter 5  | Jacob     |    Seraphina      | Angel     |
-| 2/15/23 | Chapter 6  | Jacob     |       Megan       |           |
+| 2/15/23 | Chapter 6  | Jacob     |       Megan       |    Zoe    |
 | 2/15/23 | Chapter 7  | Seraphina |      Keegan       |   Zoe     |
 | 2/22/23 | Chapter 8  |  Marissa  |   Angel           | Jacob     |
 | 2/22/23 | Chapter 9  |  Karis    |                   |  Keegan   |
