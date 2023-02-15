@@ -1,0 +1,292 @@
+#Let's imagine a 5 bp section of a genome, and that there is a SNP (A/G) in basepair 3. 
+#Assume that we are genotyping one heterozygous individual (50% chance of sequencing either allele). 
+#Please calculate the probability for the following sequencing reads:
+#All Are Conditional probibility
+#P(A|G)=P(A)*P(G)
+#P(A)=0.5
+#P(G)=0.5
+
+
+#Set One
+#AAATG
+#AAATG
+#AAATG
+
+PROBA <- 0.5
+PROBG <- 0.5
+PROBA*PROBA*PROBA
+[1] 0.125
+
+#Set Two
+#AAATG
+#AAATG
+#AAATG
+#AAATG
+#AAATG
+
+PROBA*PROBA*PROBA*PROBA*PROBA
+[1] 0.03125
+
+#Set Three
+#AAATG
+#AAGTG
+#AAATG
+#AAATG
+#AAATG
+
+PROBA*PROBG*PROBA*PROBA*PROBA
+[1] 0.03125
+
+#Way back in old 1993, Spitze reported the following number of genotypes at the PGI allozyme locus 
+#in the Daphnia population in Nothing Pond:
+#Genotype	Count
+#SS	        11
+#SS-	      55
+#S-S-	      61
+
+#A. What are the observed genotype and allele frequencies?
+11+55+61
+[1] 127
+
+11/127
+[1] 0.08661417
+#SS geneotype frequency = 0.087
+
+55/127
+[1] 0.4330709
+#SS- geneotype frequency = 0.433
+
+61/127
+[1] 0.480315
+#S-S- genotype frequency
+
+#S allele frequency
+#11 from SS, half of SS-
+
+> 55/2
+[1] 27.5
+> (11+27.5)/127
+[1] 0.3031496
+
+#S- allele frequency 
+#61 from S-S-, half of SS-
+(61+27.5)/127
+[1] 0.6968504
+
+#B. Given the observed allele frequencies, what are the genotypic frequencies expected under 
+#Hardy-Weinberg?  Using a chi-square test, how well do the observed genotype frequences agree with
+#the HWE expecations?
+#(p+q)2 = p2 +2pq+q2
+p <- 0.3031496
+q <- 0.6968504
+N <- 127
+#Expected SS frequency
+p^2 * N
+[1] 11.67126
+
+#Expected SS- frequency
+(2*p*q) * N
+[1] 53.65748
+
+#Expected S-S- frequency
+q^2 * N
+[1] 61.67126
+
+#X2 = ∑ (OBSERVED − EXPECTED) 2 / EXPECTED
+((11-11.67126)^2/11.67126) + ((55-53.65748)^2/53.65748) + ((61-61.67126)^2/61.67126)
+[1] 0.07950322
+#1 degree of freedom
+#Using a chi-square test, the observed are not significantly different from the expected
+
+#C. What is the observed heterozygosity in this population and what is the expected heterozygosity?
+#The proportion expected to be heterozygous is the proportion of heterozygotes divided by the total proportion:
+(2*p*q)/(p^2 + 2*p*q)
+[1] 0.8213457
+0.8213457*0.8213457
+[1] 0.6746088
+#Observed:  0.4330709
+#Expected: 0.6746088
+
+#Let's imagine another small population with the following genotype counts at a single SNP:
+#Genotype	Count
+#A/A	      0
+#A/G	      10
+#GG	        0
+
+HOMDOM <- 0
+HET <- 10
+HOMREC <-0
+POP <- 0+10+0
+
+#A. What are the observed genotype and allele frequencies?
+#Observed A/A
+HOMDOM/POP
+[1] 0
+
+#Observed A/G
+HET/POP
+[1] 1
+
+#Observed G/G
+HOMREC/POP
+[1] 0
+
+#A Allele Frequency
+HOMDOM+ (1/2*HET)/POP
+[1] 0.5
+
+#G Allele Frequency
+HOMREC+ (1/2*HET)/POP
+[1] 0.5
+
+#B. Given the observed allele frequencies, what are the genotypic frequencies expected under 
+#Hardy-Weinberg?  Using a chi-square test, how well do the observed genotype frequences agree with
+#the HWE expecations?
+p <-0.5
+q <-0.5
+
+#Expected A/A frequency
+p^2 * POP
+[1] 2.5
+
+#Expected A/G frequency
+2*p*q * POP
+[1] 5
+
+#Expected G/G frequency
+q^2 * POP
+[1] 2.5
+
+((0-2.5)^2/2.5)+((10-5)^2/5)+((0-2.5)^2/2.5)
+[1] 10
+#With degrees of freedom as 1, the observed is significantly different than the expected
+
+#C. Simulate one generation of random mating (you don't need to code this simulation; it can be by hand):
+#* Pair off the ten indivduals into mating pairs
+#* Randomly pick two expected offspring genotypes per pair (10 offspring genotypes)
+#* Create a new genotype table from the offsrping only (should only be 10 genotypes)
+#* Repeat subqestions A and B on the new genotype table
+
+#NEW TABLE
+#Genotype     Count
+# A/A           3
+# A/G           5
+# G/G           2
+
+#Observed genotype and allele frequencies
+NEWHOMD <-3
+NEWHET <-5
+NEWHOMR <-2
+
+NEWHOMD/POP
+[1] 0.3
+ObsHOMD <-0.3
+
+NEWHET/POP
+[1] 0.5
+ObsHET <-0.5
+
+NEWHOMR/POP
+[1] 0.2
+ObsHOMR <-0.2
+
+#A frequency
+(NEWHOMD+1/2*NEWHET)/POP
+[1] 0.55
+
+#G Frequency
+(NEWHOMR+1/2*NEWHET)/POP
+[1] 0.45
+
+#Chi Square test
+p<-0.55
+q<-0.45
+
+p^2*POP
+[1] 3.025
+
+(2*p*q) *POP
+[1] 4.95
+
+q^2*POP
+[1] 2.025
+
+((3-3.025)^2/3.025)+((5-4.95)^2/4.95)+((2-2.025)^2/2.025)
+[1] 0.001020304
+#With 1 degree of freedom, there is no significant difference between the observed and the expected.
+
+#Gel C is the banding pattern from two AFLP markers (the upper and lower sets of bands).
+#A. Estimate the frequency (q) of the null allele of each of the two AFLP markers assuming HWE.
+#A=Top Band, B=Bottom Band, O= No Band
+#Genotype      Count
+#A/B            39
+#A/0            101
+#B/O            6
+#O/O            14
+
+TotPop<-39+101+6+14
+
+#Frequency
+#A
+((30/2)+(101/2))
+[1] 65.5
+
+#B
+((39/2)+(6/2))
+[1] 22.5
+
+#AB
+((39)+(101/2)+(6/2))
+[1] 92.5
+
+#O
+((101/2)+(6/2)+(14))
+[1] 67.5
+#Frequency of null allele
+67.5/TotPop
+[1] 0.421875
+#Top null allele
+7/TotPop
+[1] 0.04375
+#Bottom null allele
+50.5+7
+57.5/TotPop
+[1] 0.359375
+
+#B. Estimate the percentage of *band-present* individuals (not the overall frequencies) that are 
+#heterozygous at each of the two markers.  What biological principle does the difference between
+#these two percentages illustrate?
+TotBandInd<-6+101+39
+
+
+(39/2+101/2)/TotBandInd
+#Frequency of A
+[1] 0.4794521
+p<-0.4794521
+
+#Frequency of B
+(6/2+39/2)/TotBandInd
+[1] 0.1541096
+q<-0.1541096
+
+#Frequency of O
+(6/2+101/2)/TotBandInd
+[1] 0.3664384
+r<-0.3664384
+
+#A will be shown when AA or AO
+p^2+2*p*r
+[1] 0.8250493
+#But AO heterozygous will be just 2pr
+2*p*r
+[1] 0.4492635
+
+#BO heterozygous
+2*q*r
+[1] 0.1129434
+
+#AB heterozygous
+2*p*q
+[1] 0.1889426
+
+#The biological principal illustrated would be the difference between dominant and recessive 
