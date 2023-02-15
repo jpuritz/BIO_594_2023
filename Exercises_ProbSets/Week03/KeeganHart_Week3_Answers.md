@@ -76,20 +76,20 @@ allelic frequency:
 
  genotypic frequencies under Hardy-Weinberg:
     $$ SS = 0.3^2 * 127= 11.43$$
-    $$ SS^- = .7^2 * 127 = 62.23 $$
-    $$ S^-S^- = (2)(.3)(.7) * 127  = 53.34$$
+    $$ S^-S^- = .7^2 * 127 = 62.23 $$
+    $$ SS^- = (2)(.3)(.7) * 127  = 53.34$$
    
-   Chi square: There are 2 degrees of freedom due to their being 3 genotypes and 2 alleles
-    $$ x^2 = \frac{(11-11.43)^2}{11.43} + \frac{(55-62.23)^2}{62.23} + \frac{(61-53.34)^2}{53.34} = 0.016 + 0.84 + 1.1 = 1.2$$
+   Chi square: There are 1 degrees of freedom due to their being 3 genotypes and 2 alleles
+    $$ x^2 = \frac{(11-11.43)^2}{11.43} + \frac{(61-62.23)^2}{62.23} + \frac{(55-53.34)^2}{53.34} = 0.016 + 0.052 + 0.024 = 0.09$$
     1.2 < 3.84 so observed frequencies agree with HWE expectations
 
  **Answer Set C**
 \
     expected heterozygosity:
-    $$ H_e = 1 - p_i^2 = 1 - 0.3^2 = 0.91$$
+    $$ 2pq = 53.34$$
 \
     observed heterozygosity:
-    $$ 55/127 = 0.43$$
+     $$frequency \space of \space SS^-$$
 ### 3.  Let's imagine another small population with the following genotype counts at a single SNP:
 
 |Genotype|Count|
@@ -125,9 +125,9 @@ genotypic frequencies expected under Hardy-Weinberg:
  $$ GG = \frac{1}{2}^2 * 10 = 1.5 $$
  $$ AG = 2 * \frac{1}{2} * \frac{1}{2} *10 = 5 $$
 
- Chi square: There are 2 degrees of freedom due to their being 3 genotypes and 2 alleles
+ Chi square: There are 1 degrees of freedom due to their being 3 genotypes and 2 alleles
     $$ x^2 = \frac{(0-1.5)^2}{1.5} + \frac{(0-1.5)^2}{1.5} + \frac{(10-5)^2}{5} = 1.5 + 1.5 + 5 = 8$$
-    8 > 3.84 (value for 2 degrees of freedom) so observed frequencies do not agree with HWE expectations
+    8 > 3.84 (value for 1 degrees of freedom) so observed frequencies do not agree with HWE expectations
 
  
 **Answer Set C**
@@ -167,7 +167,7 @@ observed genotype frequencies:
   $$ GG = 0.45^2 * 10 = 2.025 $$
   $$ AG = 2 * 0.55 * 0.45 *10 = 4.95 $$
 
-Chi square: There are 2 degrees of freedom due to their being 3 genotypes and 2 alleles
+Chi square: There are 1 degrees of freedom due to their being 3 genotypes and 2 alleles
 $$ x^2 = \frac{(4-3.025)^2}{3.025} + \frac{(3-2.025)^2}{2.025} + \frac{(3-4.95)^2}{4.95} = 0.31 + 0.469 + 0.77 = 1.549$$
 1.549 < 3.84 so observed frequencies agree with HWE expectations
 
@@ -186,21 +186,44 @@ Gel C is the banding pattern from two AFLP markers (the upper and lower sets of 
 
 **Answer Set A**
 \
-The only way I could put this problem into context was by picturing it similar to blood type
-|Genotype|Count|Expected
-|--------|-----|--------|
-|$$ I^AI^A, I^AI^O$$|6|$$p^2 + 2pr$$|
-|$$ I^BI^B, I^BI^O$$|101|$$q^2 + 2qr$$|
-|$$ I^AI^B$$|39|$$2pq$$|
-|$$ I^OI^O$$|14|$$r^2$$|
+Genotype frequencies for Bottom band:
+|Genotypes|Count|Frequency| Expected
+|--------|-----|--------|------------|
+|$$ BB, Bnb$$|$$6 + 39 = 45$$|$$45/160 = 0.28$$|$$p^2N + 2pqN $$
+|$$ nbnb$$|$$ 101+ 14 = 115 $$|$$115/160 = 0.72$$|$$q^2N $$|
 
-Genotype frequency:
-$$A=\frac{6}{160}= 0.375$$
-$$B=\frac{101}{160}=0.63$$
-$$AB=\frac{39}{160}=0.24$$
-$$O=\frac{14}{160}=0.088$$
+Genotype frequencies for Top band:
+|Genotypes|Count|Frequency| Expected
+|--------|-----|--------| ----------|
+|$$ TT, Tnt$$|$$101 + 39 = 140$$|$$140/160 = 0.875$$|$$p^2N + 2pqN $$|
+|$$ ntnt$$|$$ 6+ 14 = 20 $$|$$20/160 = 0.125$$|$$q^2N $$|
 
-frequency of null allele:
-$$ \sqrt{0.088} = 0.297$$
+
+frequency of null alleles:
+$$ nb = \sqrt{0.25} = 0.5$$
+$$ nt = \sqrt{0.125} = 0.35$$
 
 **Answer Set B**
+
+If we have the two r values (null allele frequencies) of 0.35 and 0.5 how do we calculate the p and q values to then determine 2pq for each marker?
+
+Bottom band:
+    $$p^2N+2pqN =45$$
+    $$ (160)(p^2) + (2)(p)(0.5)(160)=45 $$
+    $$160p^2 + 160p = 45$$
+    $$p^2 +p = 45/160$$
+    $$p^2 + p - 0.28125 = 0$$
+    $$p = 0.229$$
+    $$2pq = (2)(0.229)(0.5) = 0.229$$
+    $$2pqN = (0.229)(160) = 36.64 $$
+\
+Top band:
+    $$p^2N+2pqN =140$$
+     $$ (160)(p^2) + (2)(p)(0.35)(160)=140 $$
+    $$160p^2 + 112p = 140$$
+    $$160p^2 +112p - 140= 0$$
+    $$p = 0.65$$
+    $$2pq = 2(0.65)(0.35) = 0.455$$
+    $$2pqN = (0.455)(160) =72.8 $$
+
+The biological principle this represents is: linkage disequilibrium?
