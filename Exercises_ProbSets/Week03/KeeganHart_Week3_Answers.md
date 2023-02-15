@@ -109,23 +109,23 @@ $$ 2pq = 53.34$$
 \
  observed genotype frequency:
 
- $$ AA = \frac{0}{10} = 0 $$
- $$ GG = \frac{10}{10} = 1 $$
- $$ AG = \frac{0}{10} = 0 $$
+ $$AA = \frac{0}{10} = 0$$
+ $$GG = \frac{10}{10} = 1$$
+ $$AG = \frac{0}{10} = 0$$
 
 allele frequency:
-$$ A = \frac{(2 * 0) + 10}{20} $$
-$$ G = \frac{(2 * 0) + 10}{20} $$
+$$A = \frac{(2 * 0) + 10}{20}$$
+$$G = \frac{(2 * 0) + 10}{20}$$
 
 **Answer Set B**
 
 genotypic frequencies expected under Hardy-Weinberg:
- $$ AA = \frac{1}{2}^2 * 10 = 1.5 $$
- $$ GG = \frac{1}{2}^2 * 10 = 1.5 $$
- $$ AG = 2 * \frac{1}{2} * \frac{1}{2} *10 = 5 $$
+ $$AA = \frac{1}{2}^2 * 10 = 1.5$$
+ $$GG = \frac{1}{2}^2 * 10 = 1.5$$
+ $$AG = 2 * \frac{1}{2} * \frac{1}{2} *10 = 5$$
 
  Chi square: There are 1 degrees of freedom due to their being 3 genotypes and 2 alleles
-$$ x^2 = \frac{(0-1.5)^2}{1.5} + \frac{(0-1.5)^2}{1.5} + \frac{(10-5)^2}{5} = 1.5 + 1.5 + 5 = 8$$
+$$x^2 = \frac{(0-1.5)^2}{1.5} + \frac{(0-1.5)^2}{1.5} + \frac{(10-5)^2}{5} = 1.5 + 1.5 + 5 = 8$$
     8 > 3.84 (value for 1 degrees of freedom) so observed frequencies do not agree with HWE expectations
 
  
@@ -153,21 +153,21 @@ pair 5) AG AA
 |GG|3|
 
 observed genotype frequencies:
-$$ AA = \frac{4}{10} = 0.4 $$
-$$ GG = \frac{3}{10} = 0.3 $$
-$$ AG = \frac{3}{10} = 0.3 $$
+$$AA = \frac{4}{10} = 0.4$$
+$$GG = \frac{3}{10} = 0.3$$
+$$AG = \frac{3}{10} = 0.3$$
 
  allele frequencies:
-$$ A = \frac{(2 * 4) + 3}{20} = \frac{11}{20} = 0.55 $$
-$$ G = \frac{(2 * 3) + 3}{20} = \frac{9}{20} = 0.45 $$
+$$A = \frac{(2 * 4) + 3}{20} = \frac{11}{20} = 0.55$$
+$$G = \frac{(2 * 3) + 3}{20} = \frac{9}{20} = 0.45$$
 
  genotypic frequencies under HWE:
-$$ AA = 0.55^2 * 10 = 3.025 $$
-$$ GG = 0.45^2 * 10 = 2.025 $$
-$$ AG = 2 * 0.55 * 0.45 *10 = 4.95 $$
+$$AA = 0.55^2 * 10 = 3.025$$
+$$GG = 0.45^2 * 10 = 2.025$$
+$$AG = 2 * 0.55 * 0.45 *10 = 4.95$$
 
 Chi square: There are 1 degrees of freedom due to their being 3 genotypes and 2 alleles
-$$ x^2 = \frac{(4-3.025)^2}{3.025} + \frac{(3-2.025)^2}{2.025} + \frac{(3-4.95)^2}{4.95} = 0.31 + 0.469 + 0.77 = 1.549$$
+$$x^2 = \frac{(4-3.025)^2}{3.025} + \frac{(3-2.025)^2}{2.025} + \frac{(3-4.95)^2}{4.95} = 0.31 + 0.469 + 0.77 = 1.549$$
 1.549 < 3.84 so observed frequencies agree with HWE expectations
 
 <br>
@@ -188,19 +188,19 @@ Gel C is the banding pattern from two AFLP markers (the upper and lower sets of 
 Genotype frequencies for Bottom band:
 |Genotypes|Count|Frequency| Expected
 |--------|-----|--------|------------|
-|$$ BB, Bnb$$|$$6 + 39 = 45$$|$$45/160 = 0.28$$|$$p^2N + 2pqN $$
-|$$ nbnb$$|$$ 101+ 14 = 115 $$|$$115/160 = 0.72$$|$$q^2N $$|
+|$$BB, Bnb$$|$$6 + 39 = 45$$|$$45/160 = 0.28$$|$$p^2N + 2pqN$$
+|$$nbnb$$|$$ 101+ 14 = 115$$|$$115/160 = 0.72$$|$$q^2N $$|
 
 Genotype frequencies for Top band:
 |Genotypes|Count|Frequency| Expected
 |--------|-----|--------| ----------|
-|$$ TT, Tnt$$|$$101 + 39 = 140$$|$$140/160 = 0.875$$|$$p^2N + 2pqN $$|
-|$$ ntnt$$|$$ 6+ 14 = 20 $$|$$20/160 = 0.125$$|$$q^2N $$|
+|$$TT, Tnt$$|$$101 + 39 = 140$$|$$140/160 = 0.875$$|$$p^2N + 2pqN$$|
+|$$ntnt$$|$$6+ 14 = 20 $$|$$20/160 = 0.125$$|$$q^2N$$|
 
 
 frequency of null alleles:
-$$ nb = \sqrt{0.25} = 0.5$$
-$$ nt = \sqrt{0.125} = 0.35$$
+$$nb = \sqrt{0.25} = 0.5$$
+$$nt = \sqrt{0.125} = 0.35$$
 
 **Answer Set B**
 
@@ -208,7 +208,7 @@ If we have the two r values (null allele frequencies) of 0.35 and 0.5 how do we 
 
 Bottom band:
 $$p^2N+2pqN =45$$
-$$ (160)(p^2) + (2)(p)(0.5)(160)=45 $$
+$$ (160)(p^2) + (2)(p)(0.5)(160)=45$$
 $$160p^2 + 160p = 45$$
 $$p^2 +p = 45/160$$
 $$p^2 + p - 0.28125 = 0$$
@@ -218,7 +218,7 @@ $$2pqN = (0.229)(160) = 36.64 $$
 \
 Top band:
 $$p^2N+2pqN =140$$
-$$ (160)(p^2) + (2)(p)(0.35)(160)=140 $$
+$$ (160)(p^2) + (2)(p)(0.35)(160)=140$$
 $$160p^2 + 112p = 140$$
 $$160p^2 +112p - 140= 0$$
 $$p = 0.65$$
