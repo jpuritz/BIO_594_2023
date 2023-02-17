@@ -47,5 +47,5 @@
 * Do any populations have excess heterozygotes?
 * Do any populations have a deficit of heterozygotes?
 * Calculate *F<sub>IS</sub>* for each of the populations and how does this related to B and C?
-   * Hint: this the equation $F_{IS} = \frac{H_S = H_I}{H_S}$
+   * Hint: this the equation $F_{IS} = \frac{H_S - H_I}{H_S}$
    * I suggest looking it up, but you can likely figure it out from context
