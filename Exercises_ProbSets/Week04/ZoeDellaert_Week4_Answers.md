@@ -56,7 +56,7 @@
    - $N_f$ = 200
    - $N_m$ = 2
    - $N_e = \frac{4N_fN_m}{N_f + N_m}$
-   - $N_e = \frac{4*200*2}{200 + 2} = \frac{1600}{202} = 7.92$
+   - $N_e = \frac{4* 200 *2}{200 + 2} = \frac{1600}{202} = 7.92$
 
 **4.  A rare triggerplant from Australia (*Stylidium coroniforme*) has only five known populations (Coates 1992).  One of these populations has been monitored for several years, and over five years in the early 1980s: 2, 3, 25, 32, and 86 plants were recoreded.  Assuming *N<sub>e</sub>* = *N<sub>c</sub>* in that year, estimate *N<sub>e</sub>* as well as the average *N<sub>c</sub>* over this period.  What biological principle is illustrated by this example?**
 
@@ -105,9 +105,9 @@
 
 | Locality | Freq<sub>A<sub>1 | Freq<sub>A<sub>2</sub> |
 |----------|-----------|---------|
-| Munich   | $p = \frac{2*6 + 33}{2*120}$     | $q = \frac{2*81 + 33}{2*120}$     |
-| Innsbruck| $p = \frac{2*20 + 59}{2*122}$    | $q = \frac{2*43 + 59}{2*122}$     |
-| Verona   | $p = \frac{2*65 + 39}{2*118}$    | $q = \frac{2*14 + 39}{2*118}$     |
+| Munich   | $p = \frac{2* 6 + 33}{2* 120}$     | $q = \frac{2* 81 + 33}{2* 120}$     |
+| Innsbruck| $p = \frac{2* 20 + 59}{2* 122}$    | $q = \frac{2* 43 + 59}{2* 122}$     |
+| Verona   | $p = \frac{2* 65 + 39}{2* 118}$    | $q = \frac{2* 14 + 39}{2* 118}$     |
 
 | Locality | Freq<sub>A<sub>1 | Freq<sub>A<sub>2</sub> |
 |----------|-----------|---------|
