@@ -3,7 +3,8 @@ title: "Marissa's Week 4 Answers"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
+```
+{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Question 1
