@@ -28,18 +28,15 @@ I am very confused on this one...
 |Innsbruck| 0.4057|0.5942|20.1 |58.8 |43.1 |
 |Verona| 0.716|0.2839| 60.5| 47.8| 9.5|
 
-
-Comparing the observed and HWE expected genotype frequencies: 
-* Munich and Verona populations have a deficit of heterozygotes
-* Innsbruck population seems to have a slight heterozygote excess
-
 | Locality| F<sub>IS</sub>|
 |-----|----|
 |Munich| 0.309|
 |Innsbruck| -0.235|
 |Verona| 0.184|
 
-F<sub>IS</sub> values confirm the pattern seen before with Munich and Verona having a heterozygote deficit and Innsbruck having an excess.
+F<sub>IS</sub> values indicate:
+* Munich and Verona populations have a deficit of heterozygotes
+* Innsbruck population seems to have a slight heterozygote excess
 
 Full work shown below: 
 
