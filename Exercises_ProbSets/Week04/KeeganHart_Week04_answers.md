@@ -32,13 +32,16 @@
    * Assuming that the actual size of the population in any year equals the effective population size in that year, estimate the average effective number over the entire 12-year period.
 
 **Answer Set 2**
->$$N_e = \frac{t}{\sum (\frac{1}{N_i})}$$
->$$N_e = \frac{12}{\frac{1}{4100}+\frac{1}{2250}+\frac{1}{6000}+\frac{1}{8000}+\frac{1}{11000}+\frac{1}{2000}+\frac{1}{11000}+\frac{1}{16000}+\frac{1}{15000}+\frac{1}{7000}+\frac{1}{2500}+\frac{1}{1400}}$$
->$$N_e = 3936$$
+$$N_e = \frac{t}{\sum (\frac{1}{N_i})}$$
+$$N_e = \frac{12}{\frac{1}{4100}+\frac{1}{2250}+\frac{1}{6000}+\frac{1}{8000}+\frac{1}{11000}+\frac{1}{2000}+\frac{1}{11000}+\frac{1}{16000}+\frac{1}{15000}+\frac{1}{7000}+\frac{1}{2500}+\frac{1}{1400}}$$
+$$N_e = 3936$$
+
 3.  A dairy farmer has a herd consisting of 200 cows and 2 bulls.  What is the effective population size?
+
 **Answer Set 3**
->$$N_e = \frac {4N_fN_m}{N_f + N_m}$$
->$$N_e = \frac{4 * 200 * 2}{200 + 2} = \frac{1600}{202} = 7.92$$
+$$N_e = \frac {4N_fN_m}{N_f + N_m}$$
+$$N_e = \frac{4 * 200 * 2}{200 + 2} = \frac{1600}{202}=7.92$$
+
 4.  A rare triggerplant from Australia (*Stylidium coroniforme*) has only five known populations (Coates 1992).  One of these populations has been monitored for several years, and over five years in the early 1980s: 2, 3, 25, 32, and 86 plants were recoreded.  Assuming *N<sub>e</sub>* = *N<sub>c</sub>* in that year, estimate *N<sub>e</sub>* as well as the average *N<sub>c</sub>* over this period.  What biological principle is illustrated by this example?
 
 **Answer Set 4**
@@ -75,7 +78,7 @@ $$N_e = \frac{5}{\frac{1}{2}+\frac{1}{3}+\frac{1}{25}+\frac{1}{32}=\frac{1}{86}}
    * Hint: this the equation $F_{IS} = \frac{H_S - H_I}{H_S}$
    * I suggest looking it up, but you can likely figure it out from context
    
-  > $$F_{IS} = 1- \frac{H_o}{H_e}$$ 
+$$F_{IS} = 1- \frac{H_o}{H_e}$$ 
 
 Locality|N|F<sub>IS|
 |-------|-------|------|
