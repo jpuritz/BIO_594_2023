@@ -1,12 +1,7 @@
----
-title: "Marissa's Week 4 Answers"
-output: github_document
----
 
-```
-{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Marissa's Week 4 Answers 
+
+
 ## Question 1
 
 ```{r}
