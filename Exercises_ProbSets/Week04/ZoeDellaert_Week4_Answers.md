@@ -17,7 +17,7 @@
    - As N becomes very large, the $(0.5)^{2N}$ term becomes incredibly small
 
       - $(0.5)^{2*10}$ = 9.53674316e-7
-      - $(0.5)^{2*10}$ = 6.2230153e-61
+      - $(0.5)^{2*100}$ = 6.2230153e-61
 
       - , so $\lim\limits_{N \to \infty}1-(0.5)^{2N} = 1-0 = 1$
    - This holds for other values of p as well, as any value less than 1 (all allele frequencies) with the power of "^2N" will approach zero as N grows.
