@@ -15,7 +15,10 @@
    - P_keep = $1 - (1 − p)^{2N}$
    - In the case where p = 0.5, the probability of an allele being lost during a bottleneck of size N is: $(0.5)^{2N}$ and P_keep = $1-(0.5)^{2N}$
    - As N becomes very large, the $(0.5)^{2N}$ term becomes incredibly small
-      - (ex: $(0.5)^{2*10}$ = 9.53674316e-7 and $(0.5)^{2*10}$ = 6.2230153e-61)
+
+      - $(0.5)^{2*10}$ = 9.53674316e-7
+      - $(0.5)^{2*100}$ = 6.2230153e-61
+
       - , so $\lim\limits_{N \to \infty}1-(0.5)^{2N} = 1-0 = 1$
    - This holds for other values of p as well, as any value less than 1 (all allele frequencies) with the power of "^2N" will approach zero as N grows.
 
@@ -53,7 +56,7 @@
    - $N_f$ = 200
    - $N_m$ = 2
    - $N_e = \frac{4N_fN_m}{N_f + N_m}$
-   - $N_e = \frac{4*200*2}{200 + 2} = \frac{1600}{202} = 7.92$
+   - $N_e = \frac{4* 200 *2}{200 + 2} = \frac{1600}{202} = 7.92$
 
 **4.  A rare triggerplant from Australia (*Stylidium coroniforme*) has only five known populations (Coates 1992).  One of these populations has been monitored for several years, and over five years in the early 1980s: 2, 3, 25, 32, and 86 plants were recoreded.  Assuming *N<sub>e</sub>* = *N<sub>c</sub>* in that year, estimate *N<sub>e</sub>* as well as the average *N<sub>c</sub>* over this period.  What biological principle is illustrated by this example?**
 
@@ -102,9 +105,9 @@
 
 | Locality | Freq<sub>A<sub>1 | Freq<sub>A<sub>2</sub> |
 |----------|-----------|---------|
-| Munich   | $p = \frac{2*6 + 33}{2*120}$     | $q = \frac{2*81 + 33}{2*120}$     |
-| Innsbruck| $p = \frac{2*20 + 59}{2*122}$    | $q = \frac{2*43 + 59}{2*122}$     |
-| Verona   | $p = \frac{2*65 + 39}{2*118}$    | $q = \frac{2*14 + 39}{2*118}$     |
+| Munich   | $p = \frac{2* 6 + 33}{2* 120}$     | $q = \frac{2* 81 + 33}{2* 120}$     |
+| Innsbruck| $p = \frac{2* 20 + 59}{2* 122}$    | $q = \frac{2* 43 + 59}{2* 122}$     |
+| Verona   | $p = \frac{2* 65 + 39}{2* 118}$    | $q = \frac{2* 14 + 39}{2* 118}$     |
 
 | Locality | Freq<sub>A<sub>1 | Freq<sub>A<sub>2</sub> |
 |----------|-----------|---------|
@@ -125,9 +128,9 @@
 
 | Locality | Freq<sub>A<sub>1</sub>A<sub>1</sub> | Freq<sub>A<sub>1</sub>A<sub>2</sub> | Freq<sub>A<sub>2</sub>A<sub>2</sub>|
 |----------|-----------|---------|---------|
-| Munich   | $p^2 = 0.1875^2$    | $2pq = 2*0.1875*0.8125 $    | $q^2 = 0.8125^2$    |
-| Innsbruck| $p^2 = 0.4057^2 $   | $2pq = 2*0.4057*0.5943 $    | $q^2 = 0.5943^2 $     |
-| Verona   | $p^2 = 0.7161^2 $   | $2pq = 2*0.7161*0.2839 $     | $q^2 = 0.2839^2$    |
+| Munich   | $p^2 = 0.1875^2$    | $2pq = 2* 0.1875*0.8125 $    | $q^2 = 0.8125^2$    |
+| Innsbruck| $p^2 = 0.4057^2 $   | $2pq = 2* 0.4057*0.5943 $    | $q^2 = 0.5943^2 $     |
+| Verona   | $p^2 = 0.7161^2 $   | $2pq = 2* 0.7161*0.2839 $     | $q^2 = 0.2839^2$    |
 
 Calculated Expected Genotype frequency:
 
