@@ -48,7 +48,7 @@
 $$N_c = \frac{2 + 3 + 25 + 32 + 86}{5} = 29.6$$
 $$N_e = \frac{5}{\frac{1}{2}+\frac{1}{3}+\frac{1}{25}+\frac{1}{32}=\frac{1}{86}} = 5.46$$
 
->The biological principle exhibited by this example is that this population was likely created by a founder effect or went through a severe bottleneck. Populations who go through these changes can grow in size much faster than they can gain back through effective population size and genetic diversity. 
+>The biological principle exhibited by this example is the bottleneck effect which shows that "a rapid expansion in numbers does not affect the previous loss of genetic varation; it merely reduces the current rate of loss" pg 139 in book
 
 5.  You genotyep a species of grasshopper along a transect in the European Alsp.  Near Munich, Germany, you sample 120 individuals; near Inssbruck, Austria, you sample 122 individuals;  near Verona, Italy you sample 118 individuals.  You find the following genotypes:
 
