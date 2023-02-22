@@ -78,6 +78,7 @@ $$N_e = \frac{5}{\frac{1}{2}+\frac{1}{3}+\frac{1}{25}+\frac{1}{32}=\frac{1}{86}}
    * I suggest looking it up, but you can likely figure it out from context
    
   > $$F_{IS} = 1- \frac{H_o}{H_e}$$ 
+  
 Locality|N|F<sub>IS|
 |-------|-------|------|
 |Munich|120|$$1-\frac{0.275}{0.305} = 0.098$$|
