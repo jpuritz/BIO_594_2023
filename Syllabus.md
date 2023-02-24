@@ -62,11 +62,11 @@ Updated 1/25/2023 and still subject to change
 |         |      | Github, Rmarkdown, and open science using RStudio                        | [Web Links](/Readings/Week_03/Web_Readings.md); [BES Guide to Open Science](https://github.com/jpuritz/BIO_594_2022/blob/main/Readings/Week_03/BES-Guide_to_reproducible_code.pdf)                                                      |
 | 2/8/23  | 3    | Probability and Random Mating Populations: HWE                           | Appendix, Chap 5                                      | None                       |
 | 2/15/23 | 4    | Effective Population Size and Genetic Drift                              | Text Book Chapters: 6-7                                             | [Prob Set 1](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week03/Week_3_ProblemSet.md)                 |
-| 2/22/23 | 5    | Natual Selection and Population Structure                                | Text Book Chapters: 8-9                                             | Prob Set 2                 |
-| 3/1/23  | 6    | Genetics to Genomics                                                     | Text Book Chapters: 10-12                                           | Prob Set 3                 |
-| 3/8/23  | 7    | Exploited Populations and Climate Change                                 | Text Book Chapters: 15-16                                           | Prob Set 4                 |
+| 2/22/23 | 5    | Natual Selection and Population Structure                                | Class cancelled                                            | [Prob Set 2](/Exercises_ProbSets/Week04/Week_4_ProblemSet.md)                 |
+| 3/1/23  | 6    | Genetics to Genomics                                                     | Text Book Chapters: 8-10                                          | [Prob Set 2](/Exercises_ProbSets/Week04/Week_4_ProblemSet.md) and Prob Set 3                 |
+| 3/8/23  | 7    | Exploited Populations and Climate Change                                 |              Text Book Chapters: 11-12                          | Prob Set 3                 |
 | 3/15/23 |      | SPRING BREAK!!                                                           |                                                       |                            |
-| 3/22/23 | 8    | Unix Command Line                                                        |                                                       |                            |
+| 3/22/23 | 8    | Unix Command Line                                                        | Text Book Chapters: 15-16                                                          |           Prob Set 4  and  Linux Tutorials             |
 | 3/29/23 | 9    | NGS Data Structures- Visualization and Manipulation                      |                                                       |
 | 4/5/23  | 10   | RADseq: De novo assembly and read mapping                                |                                                       |
 | 4/12/23 | 11   | RADseq: SNP Calling and Filtering                                        |                                                       |
