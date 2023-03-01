@@ -23,7 +23,7 @@ This answer comes from Jacob with some changes from Jon:
 
 Using the hint from the question, when N is very large $(1- \frac{1}{2N})^{2N}  $
 
-How do we get from that to the hint equation?  What if $x = -1$ and $\varepsilon = \frac{1}{2N} $ ?
+How do we get from that to the hint equation?  What if $x = -1$ and $\varepsilon = \frac{1}{2N}$ ?
 
 $ \approx (1- \frac{1}{2N})^{2N} \approx e^{-1} \approx 0.37$ 
 
