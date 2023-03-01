@@ -75,7 +75,7 @@ $$  P_x = \frac {5!}{(5-4)!* 4!} * \frac{1}{2}^4 * \frac{1}{2}^1 = \frac{5}{32}$
     C. What is the observed heterozygosity in this population and what is the expected heterozygosity?
 
 ### Answer
-Answer to problem one comes from Zoe Dellaer (some of you might have slighly different numbers):
+Answer to problem one comes from Zoe Dellaert (some of you might have slighly different numbers):
 
 - Genotype frequencies:
     - Total number: 127
