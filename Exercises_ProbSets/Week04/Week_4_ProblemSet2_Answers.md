@@ -25,7 +25,7 @@ Using the hint from the question, when N is very large $(1- \frac{1}{2N})^{2N}  
 
 How do we get from that to the hint equation?  What if $x = -1$ and $\varepsilon = \frac{1}{2N}$ ?
 
-$ \approx (1- \frac{1}{2N})^{2N} \approx e^{-1} \approx 0.37$ 
+$\approx (1- \frac{1}{2N})^{2N} \approx e^{-1} \approx 0.37$ 
 
 
 2.  A highly isolation colony of the month *Panaxia dominula* near Oxford, England has been instenstively studied by Ford and collaborators over the period of 1928-1968 (Ford and Sheppard 1969).  This speices has one generation per year, and estimates of the population size were caried out yearly begnining in 1941.  For the years 1950-1961, inclusive, estimates of the population size were: 
