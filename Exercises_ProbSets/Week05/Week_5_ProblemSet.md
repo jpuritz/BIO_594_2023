@@ -27,7 +27,7 @@
 
 2.  Levin (1978) studied allele frequencies at the 6-*pgd* allozyme locus in 73 sub-populations of the self-incompatible species *Phlox drummondi*. Of these 73 subpopulations,66 were fixed for the a allele, with allele frequencies and observed heterozygosities at the other loci given below (Levin's original subpopulation numbering altered for simplicity):
 
-|Subpopulation |*p* |*H<sub>I</sub>* |
+|Subpopulation |*p* |*H<sub>O</sub>* |
 |--------------|----|----------------|
 |1-66|1|0|
 |67|0.86|0.06|
