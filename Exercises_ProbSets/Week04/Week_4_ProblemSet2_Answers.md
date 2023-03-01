@@ -53,6 +53,7 @@ $$N1+N2+N3+N4+N5+N6+N7+N8+N9+N10+N11+N12=$$
 $$4100+2250+6000+8000+11000+2000+11000+16000+15000+7000+2500+1400= 86250$$
 $$Ne=\frac{t}{\sum(\frac{1}{Ni})}$$
 $$Ne=\frac{12}{(\frac{1}{4100}+\frac{1}{2250}+\frac{1}{6000}+\frac{1}{8000}+\frac{1}{11000}+\frac{1}{2000}+\frac{1}{11000}+\frac{1}{11000}+\frac{1}{16000}+\frac{1}{15000}+\frac{1}{7000}+\frac{1}{2500}+\frac{1}{1400})}=3936$$
+
 **Average effective number over the next 12 years is $$Ne=3936$$** 
 
 3.  A dairy farmer has a herd consisting of 200 cows and 2 bulls.  What is the effective population size?
