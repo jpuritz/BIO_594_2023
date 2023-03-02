@@ -14,7 +14,7 @@
 
 ## Wahlund Effect
 * fewer heterozygotes compared to HWE due to subdivision into demes
-    * if you broke it up and looied at each deme individually they would all be within HWE but as a whole they do not seem to be in HWE
+    * if you broke it up and looked at each deme individually they would all be within HWE but as a whole they do not seem to be in HWE
 * Trout example:
     * both groups were nearly fixed for two alleles
     * heterozygosity was 73% lower than if there was random mating among all members of lake 
@@ -22,7 +22,7 @@
 
 ## Excess of Homozygotes
 * F<sub>IS</sub> > 0
-    * caused bu non-random matings and poulation dubdivision - inbreeding
+    * caused by non-random matings and poulation dubdivision - inbreeding
 
 ## Excess of Heterozygotes
 *  F<sub>IS</sub> < 0 
