@@ -87,11 +87,14 @@ If we consider non-overlapping generations where Nc1 and Nc2 are the census popu
 To estimate the average Ne over the five-year period, we can take the geometric mean of these values:
 >
 > Average Ne = (2.4 * 3.41 * 22.43 * 32.78)^(1/4) = 8.56
+> 
 > $N_c = \frac{2+3+25+32+86}{5}$
 >
 > $N_c = \frac{148}{5}$
 >
 > $N_c = 29.6$
+
+Even though there are a lot of plants, the first two years of inbreeding have a large impact of average population size.
 
 5- You genotype a species of grasshopper along a transect in the European Alsp.  Near Munich, Germany, you sample 120 individuals; near Inssbruck, Austria, you sample 122 individuals;  near Verona, Italy you sample 118 individuals.  You find the following genotypes:
 
@@ -194,11 +197,11 @@ Calculate expected heterozygosity ($2pq$)
 >
 > >[Observed > Expected] ($0.275 > 0.192$)
 >
-> $H_{obs}Innsbruck = 2*0.406*0.594 = 0.482$
+> $H_{exp}Innsbruck = 2*0.406*0.594 = 0.482$
 >
 > >[Observed = Expected] ($0.484 \approx 0.482$)
 >
-> $H_{obs}Verona = 2*0.716*0.284 = 0.406$
+> $H_{exp}Verona = 2*0.716*0.284 = 0.406$
 >
 > >[Observed < Expected] ($0.331 < 0.406$)
 >

@@ -99,8 +99,8 @@ $$
 
 * Genotype frequencies
   * $SS = (11/127) = 0.087$
-  * $SS- = 55/127 = 0.43$
-  * $S-S- = 61/127 = 0.48$
+  * $SS- = (55/127) = 0.43$
+  * $S-S- = (61/127) = 0.48$
   
 * Allele Frequecies
   * $q = S = \frac{2*SS + SS-}{2N}$
@@ -374,8 +374,10 @@ Genotype Frequency
 
 B. Estimate the percentage of *band-present* individuals (not the overall frequencies) that are heterozygous at each of the two markers.  What biological principle does the difference between these two percentages illustrate?
 
-Upper: $2pq = 2 * (1-0.354) * 0.354 = 0.457368$
+Review answers from Jon
 
-Lower: $2pq = 2 * (1-0.84779) * 0.84779 = 0.25808$
+Upper: $\frac{2pq}{p^2 + 2pq} = 0.523$
+
+Lower: $\frac{2pq}{p^2 + 2pq}= 0.918$
 
 This demonstrates homozygotic dominance.
