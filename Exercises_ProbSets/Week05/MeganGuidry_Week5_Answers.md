@@ -9,8 +9,6 @@
 
 **Use Eqn 9.17 on page 194 in the tb**
 
-![eqn9.17](guidry_images/eqn9.17.png)
-
 |Locus | *F<sub>ST</sub>* | **# of migrants (mN)** |
 |------|------------------|--------------------|
 | *GAP-1*| 0.10| **2.3** |
@@ -20,9 +18,12 @@
 | *GPD-1*| 0.11| **2.0** |
 | *PGM-1*| 0.14| **1.5** |
 
-
+**This pattern indicates that the populations are not in a migration-drift balance because of the variance between the number of migrants. For instance, loci *IDH-1* has an estimated 12.3 migrants and loci *HBDH-1* has an estimated 0.2 migrants. I would expect to see similar numbers of migrants (at least the same magnitude) across the loci if they are in migration-drift balance. So does this mean that those loci are under selection?**
 
 * Most of the differentiation at *HBDH-1* show in the data occurs between the two species of host plants; nine of the subpopulations occured on *Solidago altissima* and the other 12 subpops were on *S. gigantean*.  The frequency of one of the two *HBDH* alleles is 0.84 on *S. altissima* and 0.13 on *S. gigantea*.  How does this affect your interpretation of the results?
+
+**The *S. altissima* allele is under positive directional selection. (local adaptation?)**
+
 
 2.  Levin (1978) studied allele frequencies at the 6-*pgd* allozyme locus in 73 sub-populations of the self-incompatible species *Phlox drummondi*. Of these 73 subpopulations,66 were fixed for the a allele, with allele frequencies and observed heterozygosities at the other loci given below (Levin's original subpopulation numbering altered for simplicity):
 
@@ -39,9 +40,49 @@
 
 * Calculate the three F-statistics for these data and check to make sure they have the correct mathematical relationship. Do these comparisons fit your expectations based on the mating systems of this species? Why or why not? If not, do you have a possible explanation for the lack of fit?
 
+**F statistic equations are equations 9.2, 9.3, and 9.4 in the textbook.**
+
+First solved for *q* and *H<sub>E</sub>*.
+
+|Subpopulation |*p* |*q* |*H<sub>O</sub>* |*H<sub>E</sub>* |
+|--------------|----|----|----------------|----------------|
+|1-66|1|0|0|0|
+|67|0.86|0.14|0.06|0.24|
+|68|0.80|0.2|0.12|0.32|
+|69|0.70|0.3|0.20|0.42|
+|70|0.96|0.04|0.03|0.08|
+|71|0.96|0.04|0.09|0.08|
+|72|0.73|0.27|0.15|0.39|
+|73|0.91|0.09|0.06|0.16|
+
+Then solved for the average of *H<sub>O</sub>* across the subpopulations and *H<sub>S</sub>* which is the average of *H<sub>E</sub>* across the subpopulations.
+
+avg. *H<sub>O</sub>* = 0.089
+
+avg. *H<sub>E</sub>* = 0.21
+
+Lastly, solve for the F-statistics. 
+
+*F<sub>IS</sub>* = 1- (*H<sub>O</sub>* / *H<sub>S</sub>*) = **0.58**
+
+*F<sub>ST</sub>* = 1- (*H<sub>S</sub>* / *H<sub>T</sub>*) = **0.094**
+
+> where *H<sub>T</sub>* is the expected heterozygosity if the whole population where panmictic therefore you use *2pq* to find that value where *p* and *q* are the means of those allele frequencies in the population
+
+*F<sub>IT</sub>* = 1- (*H<sub>O</sub>* / *H<sub>T</sub>*) = **0.62**
+
 * Calculate *N<sub>e</sub>m* from these data.  If the migration rate *m* was found to be 0.1, what would the estimate of *N<sub>e</sub>* be?
 
+
+**Use equation 9.17 again to find the number of migrants (mN) with given Fst from previous step**
+
+mN = 2.4
+
+With a migration rate (m) equal to 0.1, *N<sub>e</sub>* =  ???
+
 * Now assume that *N<sub>e</sub>* is very large, 6-*pgd* is neutral in these subpopulations, and the migration rate is still O.1. What would the frequencies of the *a* allele in subpopulations 68 and 69 after 10 generations be? After 25 gener-ations? What biological principle is illustrated by these results?
+
+
 
 3.  In *D. melanogaster*, curly wings is due to a dominant allele C<sub>*y*</sub> that is lethal when homozygous. A population is established with an initial frequency of C<sub>*y*</sub> equal to 0.168. Calculate the expected frequency in the next generation, assuming.
       * The relative fitness of +/+ : C<sub>*y*</sub>/+ is 1:1.
