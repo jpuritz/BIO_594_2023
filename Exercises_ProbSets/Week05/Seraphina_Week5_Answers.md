@@ -23,6 +23,7 @@
 
 * Calculate the expected number of migrants per generation for each locus.  What is your interpretation of these data?  Do you think the differentiation at these loci is caused soley by a balance between migration and drift?  Why or why not?
 $$Mn=\frac{1-F_ST}{4(F_ST_)}$$
+
 |Locus|*mN*|
 |-----|--|
 |*GAP-1*|$$mN=\frac{1-0.10}{4(0.10)}=2.25$$|
@@ -63,6 +64,7 @@ $$Mn=\frac{1-F_ST}{4(F_ST_)}$$
 |Totals|$\bar{p}$|$\bar{q}$|H<sub>T</sub>|
 |-|-|-|-|
 | |0.985|0.015|0.03|
+#
 $$H_I=\frac{(66*0)+0.06+0.12+0.20+0.03+0.09+0.15+0.06}{73}=0.0097$$
 $$H_S=\frac{(66*0)+0.24+0.32+0.42+0.08+0.08+0.4+0.16}{73}=0.023$$
 $$H_T=2\overline{p}{q}=2(0.985)(0.015)=0.03$$
@@ -101,6 +103,7 @@ $$q=1-0.41=0.59$$
 |A<sub>1</sub>A<sub>1|$1-1.5=-0.5$|
 |A<sub>1</sub>A<sub>2|$1-1.1=-0.1$|
 |A<sub>2</sub>A<sub>2|$1-1.0=0$|
+#
 $$s=1-W$$
 $$h=\frac{(wA_1A_1+wA_2A_2-2(A_1A_2)}{(2(A_1A_1+wA_2A_2-2(A_1A_2))}$$
 $$\frac{(1.5+1.0-2(1.1)}{(2(1.5+1.0-2(1.1))}=0.5$$
