@@ -12,7 +12,7 @@ The fly Eurosta solidaginis forms galls (enlarged areas) on goldenrod plants wit
 | *GPD-1*| 0.11|
 | *PGM-1*| 0.14|
 
-###Answer
+### Answer
 Under the island model, the number of migrants can be estimated using the following formula: mN=(1-F<sub>ST</sub>)/4*F<sub>ST</sub>
 
 ```{r}
@@ -52,7 +52,7 @@ Most of the differentiation at HBDH-1 show in the data occurs between the two sp
 
 * It seems that the HBDH allele on S. altissima is being selected for while the allele on S. gigantica is being selected against. Perhaps this allele gives some fitness advantage to S. altissima, or conversely is harmful to S. gigantica.
 
-##Question 2
+## Question 2
 Levin (1978) studied allele frequencies at the 6-*pgd* allozyme locus in 73 sub-populations of the self-incompatible species *Phlox drummondi*. Of these 73 subpopulations,66 were fixed for the a allele, with allele frequencies and observed heterozygosities at the other loci given below (Levin's original subpopulation numbering altered for simplicity):
 
 
@@ -162,7 +162,7 @@ This is how much the population has departed from HW proportions.
 Overall I would say these F values do fit what I would expect because one value says there is a defecit of heterozygotes, and the other says that there is a deviation from HW, which corroborate each other. 
 
 Calculate *N<sub>e</sub>m* from these data.  If the migration rate *m* was found to be 0.1, what would the estimate of *N<sub>e</sub>* be?
-$m_N=/frac{(1-F_ST)}{4*F_ST}$
+$m_N=\frac{(1-F_ST)}{4*F_ST}$
 m<sub>N</sub>=2.41
 
 ```{r}
@@ -211,7 +211,7 @@ Repeated for all generations, results shown in table below
 
 Once I went past the 10th generation, the values stabalized around 0.75, showing that when there is migration, eventually the allele frequency will reach an equilibrium between the values originally started at.
 
-##Question 3
+## Question 3
 In *D. melanogaster*, curly wings is due to a dominant allele C<sub>*y*</sub> that is lethal when homozygous. A population is established with an initial frequency of C<sub>*y*</sub> equal to 0.168. Calculate the expected frequency in the next generation, assuming.
       * The relative fitness of +/+ : C<sub>*y*</sub>/+ is 1:1.
       * The relative fitness of +/+ : C<sub>*y*</sub>/+ is 1:0.5.
@@ -266,7 +266,7 @@ w=0.831
 |+/+|q^2|0.5|0.692224|1*0.692224=0.692224|0.833|
 
 
-##Question 4
+## Question 4
 If the fitnesses of the genotypes A<sub>1</sub>A<sub>1</sub>, A<sub>1</sub>A<sub>2</sub>, and A<sub>2</sub>A<sub>2</sub> are 1.5, 1.1, and 1.0, respectively, what are the values of the selection coefficient and the heterozygous effect?
 **Not positive how to do this, my attempt is below**
 
@@ -296,17 +296,23 @@ We can rescale the fitness values based on the largest one, googled for clarity 
  **Quote and chart taken from the above website**
  
   wA<sub>1</sub>A<sub>2</sub> = 1-hs
+  
 wA<sub>1</sub>A<sub>2</sub>-1=-hs
+
 (wA<sub>1</sub>A<sub>2</sub>-1)/s=-h
+
 -((wA<sub>1</sub>A<sub>2</sub>-1)/s)=h
+
 h=(-wA<sub>1</sub>A<sub>2</sub>+1/-s)
+
 h=(1-wA<sub>1</sub>A<sub>2</sub>)/-s)
+
 
 h=(1-0.73)/-0.27
 h=-1
 This means there is overdominance.
  
- ##Question 5
+ ## Question 5
  Industrial melanism refers to the dark pigmentation that evolved in some insects, giving them protective coloration on vegetation darkened by soot in heavily industrialized areas prior to the requirement for smokestack filtration. In one heavily polluted area near Birmingham, England in 1956, 87% of moths of the species *Biston betularia* had black bodies due to the presence of a dominant gene for melanism (Kettlewell 1956). 
 
 * Estimate the frequency of the dominant allele in this population and the frequency of melanics that are heterozygous.
@@ -403,7 +409,7 @@ p=0.025
 **Not sure where to go from here**
 
 
-##Question 6
+## Question 6
 Experimental populations of *Drosophila pseudoobscura* were established and periodically treated with weak doses of the insecticide DDT (Anderson et al. 1968).
 One population was initially polymorphic for five different inversions in the third chromosome, in approximately equal frequencies. After 13 generations, three of the inversions had disappeared from the population. The two that remained were *Standard* (*ST*) and Arrowhead (*AR*). Changes in frequencv of each inversion were monitored, and from the values for the first nine generations the relative fitnesses of *ST*/*ST*, *ST*/*AR*, and *AR*/*AR* genotypes were estimated as 0.47, 1.0, and 0.62, respectively. Because the inversions yield almost no recombinant gametes, each type can be considered as an "allele." What equilibrium frequency of ST is predicted? What equilibrium value of $\bar{w}$ is predicted?
 |*ST*/*ST*|*ST*/*AR*|*AR*/*AR*|
@@ -412,7 +418,7 @@ One population was initially polymorphic for five different inversions in the th
 
 *ST*/*AR* is the highest so there is heterozygosity dominance.
 
-$p*=/frac{w_ST/AR-w_AR/AR}{2 * w_ST/AR - w_ST/ST - w_AR/AR}$
+$p* = \frac{w_ST/AR-w_AR/AR}{2 * w_ST/AR - w_ST/ST - w_AR/AR}$
 
 ```{r}
 > (1-0.62)/(2*1-0.47-0.62)
@@ -438,7 +444,7 @@ w=0.47+1+0.62
 |0.47|1|0.62|
 |0.225|0.478|0.297|
 
-$p*=/frac{w_ST/AR-w_AR/AR}{2 * w_ST/AR - w_ST/ST - w_AR/AR}$
+$p* = \frac{w_ST/AR-w_AR/AR}{2 * w_ST/AR - w_ST/ST - w_AR/AR}$
 ```{r}
 > (0.478-0.297)/(2*0.478-0.225-0.297)
 [1] 0.4170507
