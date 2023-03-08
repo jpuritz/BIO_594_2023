@@ -158,8 +158,9 @@ $$h =\frac{1.5 + 1 - (2*1.1)}{2(1.5+1-2(1.1))}=-0.125$$
       >$$2pq = 2(0.36)(0.64)=0.46$$
       * In this species, the frequency of melanic moths increased from a value of 1% in 1848 to a value of 95% in 1898.  The species has one generation per year.
          * Estimate the approximate value of the selection coeffecient *s* against non-melanics that would be necessary to account for the change in the frequency of the melanic forms.
-         > in 50 years frequency of dominant allele goes from .01 -> .95
+         > in 50 years frequency of dominant allele goes from .01 -> .95. Not sure how to solve this problem. Cannot find any appropriate equations in text. 
          * How many generations would be required for the same change in frequency of melanic forms in a hypothetical case in which the allele for melanism is recessive, assuming the same value of *s* against nonmelanics
+         > Not sure how to solve this problem. Cannot find any appropriate equations in text. 
 
 6. Experimental populations of *Drosophila pseudoobscura* were established and periodically treated with weak doses of the insecticide DDT (Anderson et al. 1968).
 One population was initially polymorphic for five different inversions in the third chromosome, in approximately equal frequencies. After 13 generations, three of the inversions had disappeared from the population. The two that remained were *Standard* (*ST*) and Arrowhead (*AR*). Changes in frequencv of each inversion were monitored, and from the values for the first nine generations the relative fitnesses of *ST*/*ST*, *ST*/*AR*, and *AR*/*AR* genotypes were estimated as 0.47, 1.0, and 0.62, respectively. Because the inversions yield almost no recombinant gametes, each type can be considered as an "allele." What equilibrium frequency of ST is predicted? What equilibrium value of $\bar{w}$ is predicted?
