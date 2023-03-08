@@ -123,7 +123,7 @@
 >|C<sub>y</sub>/C<sub>y</sub>|$$p^2=0$$|0|0|
 >|C<sub>y</sub>/+|$$2pq= 2(0.41)(0.59) =0.48$$|1| $$\frac{0.48}{0.83}=0.58$$
 >|+/+|$$q^2=0.59^2= 0.35$$|1|$$\frac{0.35}{0.83}=0.42$$
->$$ w^- = p^2w_{11} + 2pqw_{12} + q^2w_{22}$$
+>$$w^- = p^2w_{11} + 2pqw_{12} + q^2w_{22}$$
 >$$w^- =0 + 0.48(1)+0.35(1)=0.83$$
 
 > Calculate the expected frequency of C<sub>y</sub> if the relative fitness of +/+ : C<sub>*y*</sub>/+ is 1:0.5:
@@ -132,8 +132,8 @@
 >|C<sub>y</sub>/C<sub>y</sub>|$$p^2=0$$|0|0|
 >|C<sub>y</sub>/+|$$2pq= 2(0.41)(0.59) =0.48$$|0.5| $$\frac{0.48}{0.59}=0.81$$
 >|+/+|$$q^2=0.59^2= 0.35$$|1|$$\frac{0.35}{0.59}=0.59$$
->$$ w^- = p^2w_{11} + 2pqw_{12} + q^2w_{22}$$
->$$ w^-= 0 + 0.48(0.5) + 0.35(1)=0.59$$
+>$$w^- = p^2w_{11} + 2pqw_{12} + q^2w_{22}$$
+>$$w^-= 0 + 0.48(0.5) + 0.35(1)=0.59$$
 
 4. If the fitnesses of the genotypes A<sub>1</sub>A<sub>1</sub>, A<sub>1</sub>A<sub>2</sub>, and A<sub>2</sub>A<sub>2</sub> are 1.5, 1.1, and 1.0, respectively, what are the values of the selection coefficient and the heterozygous effect?
 >|Genotype|Absolute Fitness| Relative Fitness|Selection Coefficient| Dominance Coefficient|
@@ -143,7 +143,8 @@
 >|A<sub>2</SUB>A<sub>2|1.0|$$0.66 = 1-s$$|$$s = 1-0.66 = 0.34$$
 
 
->heterozygous effect: measures the deviation in fitness of the heterozygous genotype from the average fitness of the two homozygous genotypes.$$h =\frac{1.5 + 1 - (2*1.1)}{2(1.5+1-2(1.1))}=-0.125$$
+>heterozygous effect: measures the deviation in fitness of the heterozygous genotype from the average fitness of the two homozygous genotypes.
+$$h =\frac{1.5 + 1 - (2*1.1)}{2(1.5+1-2(1.1))}=-0.125$$
 
 5. Industrial melanism refers to the dark pigmentation that evolved in some insects, giving them protective coloration on vegetation darkened by soot in heavily industrialized areas prior to the requirement for smokestack filtration. In one heavily polluted area near Birmingham, England in 1956, 87% of moths of the species *Biston betularia* had black bodies due to the presence of a dominant gene for melanism (Kettlewell 1956). 
 
