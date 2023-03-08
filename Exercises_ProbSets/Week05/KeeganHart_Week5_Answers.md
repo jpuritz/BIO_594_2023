@@ -163,8 +163,8 @@ $$h =\frac{1.5 + 1 - (2*1.1)}{2(1.5+1-2(1.1))}=-0.125$$
 One population was initially polymorphic for five different inversions in the third chromosome, in approximately equal frequencies. After 13 generations, three of the inversions had disappeared from the population. The two that remained were *Standard* (*ST*) and Arrowhead (*AR*). Changes in frequencv of each inversion were monitored, and from the values for the first nine generations the relative fitnesses of *ST*/*ST*, *ST*/*AR*, and *AR*/*AR* genotypes were estimated as 0.47, 1.0, and 0.62, respectively. Because the inversions yield almost no recombinant gametes, each type can be considered as an "allele." What equilibrium frequency of ST is predicted? What equilibrium value of $\bar{w}$ is predicted?
      
 $$w_{11} = 0.47, w_{12}=1,w_{22}=0.62$$
-$$p^* = \frac{w_{12} - w_{22}}{2w_{12} - w_{11}-w{22}}$$
-$$p^*=\frac{1-0.62}{2(1)-0.47-0.62}=\frac{0.38}{0.91}=0.42$$
-$$q^* = 1- 0.42 = 0.58$$
+$$p* = \frac{w_{12} - w_{22}}{2w_{12} - w_{11}-w{22}}$$
+$$p*=\frac{1-0.62}{2(1)-0.47-0.62}=\frac{0.38}{0.91}=0.42$$
+$$q* = 1- 0.42 = 0.58$$
 $$\bar{w}=p^2w_{11}+2pqw_{12}+q^2w_{22}$$
 $$\bar{w}=(0.42)^2(0.47)+2(0.42)(0.58)(1)+(0.58)^2(0.62)= 0.083+0.49+0.2=0.78$$
