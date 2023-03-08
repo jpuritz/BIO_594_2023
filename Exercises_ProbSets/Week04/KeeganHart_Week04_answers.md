@@ -5,7 +5,7 @@
 1.  What is the probability that a particular allele has at least one copy in the next generation?  The surprising answer quickly becomes independent of population size as *N* becomes larger.  (Hint: Use one minus the probability that the allele has no copies in the next generation and this equation: $\lim\limits_{\varepsilon \to \infty}(1+\varepsilon*x)^\frac{1}{\varepsilon} = e^x$)
 
 **Answer Set 1**
-\
+
 > The probability that an allele will not make it to the next generation is:$$1-p^{2N}$$
 
 >So therefore the probability that an allele has at least one copy in the next generation is:$$1-(1-p^{2N})$$ 
