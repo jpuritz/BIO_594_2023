@@ -161,6 +161,7 @@ $$h =\frac{1.5 + 1 - (2*1.1)}{2(1.5+1-2(1.1))}=-0.125$$
 
 6. Experimental populations of *Drosophila pseudoobscura* were established and periodically treated with weak doses of the insecticide DDT (Anderson et al. 1968).
 One population was initially polymorphic for five different inversions in the third chromosome, in approximately equal frequencies. After 13 generations, three of the inversions had disappeared from the population. The two that remained were *Standard* (*ST*) and Arrowhead (*AR*). Changes in frequencv of each inversion were monitored, and from the values for the first nine generations the relative fitnesses of *ST*/*ST*, *ST*/*AR*, and *AR*/*AR* genotypes were estimated as 0.47, 1.0, and 0.62, respectively. Because the inversions yield almost no recombinant gametes, each type can be considered as an "allele." What equilibrium frequency of ST is predicted? What equilibrium value of $\bar{w}$ is predicted?
+     
 $$w_{11} = 0.47, w_{12}=1,w_{22}=0.62$$
 $$p^* = \frac{w_{12} - w_{22}}{2w_{12} - w_{11}-w{22}}$$
 $$p^*=\frac{1-0.62}{2(1)-0.47-0.62}=\frac{0.38}{0.91}=0.42$$
