@@ -66,8 +66,8 @@ Updated 1/25/2023 and still subject to change
 | 3/1/23  | 6    | Genetics to Genomics                                                     | Text Book Chapters: 8-10                                          | [Prob Set 2](/Exercises_ProbSets/Week04/Week_4_ProblemSet.md) and [Prob Set 3](/Exercises_ProbSets/Week05/Week_5_ProblemSet.md)                 |
 | 3/8/23  | 7    | Exploited Populations and Climate Change                                 |              Text Book Chapters: 10-12                          | [Prob Set 3](/Exercises_ProbSets/Week05/Week_5_ProblemSet.md)              |
 | 3/15/23 |      | SPRING BREAK!!                                                           |                                                       |                            |
-| 3/22/23 | 8    | Unix Command Line                                                        | Text Book Chapters: 15-16                                                          |               Linux Tutorials             |
-| 3/29/23 | 9    | NGS Data Structures- Visualization and Manipulation                      |      [Prob Set 4](/Exercises_ProbSets/Week06/Week_6_ProblemSet.md)                                            |
+| 3/22/23 | 8    | Unix Command Line                                                        | Text Book Chapters: 15-16                                                          |                         |
+| 3/29/23 | 9    | NGS Data Structures- Visualization and Manipulation                      |                                                  |[Prob Set 4](/Exercises_ProbSets/Week06/Week_6_ProblemSet.md)  Linux Tutorials  |
 | 4/5/23  | 10   | RADseq: De novo assembly and read mapping                                |                                                       |
 | 4/12/23 | 11   | RADseq: SNP Calling and Filtering                                        |                                                       |
 | 4/19/23 | 12   | Detecting Loci Under Selection                                           |                                                       |                            |
