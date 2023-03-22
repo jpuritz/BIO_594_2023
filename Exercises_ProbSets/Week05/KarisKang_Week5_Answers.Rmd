@@ -1,0 +1,160 @@
+---
+title: "KarisKang_Week5_Answers"
+author: "Karis Kang"
+date: "2023-03-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problem Set 3
+
+### Problem 1
+
+The fly *Eurosta solidaginis* forms galls (enlarged areas) on goldenrod plants within which the fly larvae feed and develop. A study of allozyme frequencies in 21 subpopulations of *E. solidaginis* on two different species of goldenrod distributed from Minnesota to Maine (Waring et al. 1990) produced the following estimates of Fst. 
+
+|    Locus    |	   FST    |   Number of migrants   |
+|:------------|:----------|:-----------------------|
+|    GAP-1    |   0.10    |   2.040816327
+|    TPI-1    |	  0.11    |   1.834673263
+|    IDH-1    | 	0.02    |   11.11111111
+|    HBDH-1   |	  0.62    |   0.138980323
+|    GPD-1    |	  0.11    |   1.834673263
+|    PGM-1    |	  0.14    |   1.392938128
+
+Calculate the expected number of migrants per generation for each locus. What is your interpretation of these data? Do you think the differentiation at these loci is caused soley by a balance between migration and drift? Why or why not? 
+
+**My Answer**: 
+
+>__Expected number of migrants__: equations used below, calculated values in table above
+
+>__Interpretation of data__: Although I haven't tested for statistical differences, locus IDH-1 clearly has about a tenfold higher rate of migration compared to the other loci, and a much lower degree of variation among populations (Fst). This suggests that the disparity in mN and Fst between IDH-1 and the other loci listed cannot be soley accounted for by migration/drift equilibrium, and is instead driven by selective pressures which favors the dispersal of this locus.
+
+```{r expectedmigrants}
+#Island model calculation with finite subpopulations assuming low migration (m)
+#mN = migrants per generation 
+#n = number of subpopulations = 21 
+#FST = 1/(4*mN*a+1) 
+#nM = (1/(FST*4*a)) - (1/(4*a))
+#a = (n/(n-1))^2 
+#a = (21/(21-1))^2 = 1.1025
+#this is where I plug the equation into Excel and copy it over because I'm not sure how to script it in R yet (sorry)
+  
+```
+
+Most of the differentiation at HBDH-1 show in the data occurs between the two species of host plants; nine of the subpopulations occured on *Solidago altissima* and the other 12 subpops were on *S. gigantean*. The frequency of one of the two HBDH alleles is 0.84 on S. altissima and 0.13 on S. gigantea. How does this affect your interpretation of the results?
+
+**My Answer**
+
+>If alleles at the HBDH locus occur at different frequencies in two different host species, then subpopulations within the two different host species may be demes with limited geneflow between them and exhibit the Wahlund effect; the observed heterozygosity (the mean heterozygosity of both demes) would be lower than the heterozygosity expected if subpopulations found in both species were panmictic, leading to a higher Fst value. For a better representation of variability among subpopulations, only subpopulations found in the same *Solidago* species should be used in Fst calculations.
+
+### Problem 2
+
+Levin (1978) studied allele frequencies at the 6-pgd allozyme locus in 73 sub-populations of the self-incompatible species Phlox drummondi. Of these 73 subpopulations, 66 were fixed for the a allele, with allele frequencies and observed heterozygosities at the other loci given below (Levin's original subpopulation numbering altered for simplicity):
+
+
+|   Subpopulation   |   p   |   HO   |   Hs   |   Fis   |
+|:------------------|:------|:-------|:-------|:--------|
+|   1-66   |   1   |   0   |   0   |   1
+|   67   | 	 0.86   |   0.06   |   0.2408   |   0.750830565
+|   68 	 |   0.80 	|   0.12   |   0.32   |   0.625
+|   69   |   0.70   |   0.20   |   0.42   |   0.523809524
+|   70   |   0.96   |   0.03   |  0.0768   |   0.609375
+|   71   |   0.96   |   0.09   |   0.0768   |   -0.171875
+|   72   |   0.73   |   0.15   |   0.3942   |   0.619482496
+|   73   |   0.91   |   0.06   |   0.1638   |   0.633699634
+
+
+* Calculate the three F-statistics for these data and check to make sure they have the correct mathematical relationship. Do these comparisons fit your expectations based on the mating systems of this species? Why or why not? If not, do you have a possible explanation for the lack of fit?
+
+**My Answer**
+
+[work once again done in excel and copied over]
+
+>Departure from HW within subpopulations
+
+ - Ho = observed heterozygosity
+
+ - Hs = expected heterozygosity (2pq)
+
+ - Fis = 1-(Ho/Hs)
+ 
+ Hs and Fis for each subpopulation = in table 
+ 
+ Average Ho for subpopulations = 0.08875
+ 
+ Average Hs for subpopulations = 0.21155
+ 
+ Average Fis for subpopulations = 0.57379
+
+>Departure from HW among subpopulations
+
+ - Hs = expected HW proportion of heterozygotes for each subpopulation, then averaged over all subpopulations 
+
+ - Ht = expected HW heterozygosity if entire population were panmictic 
+
+ - Fst = 1-(Hs/Ht)
+ 
+ Ht = 0.029151
+ 
+ Fst = -6.25697
+
+>Total departure from HW both within and among subpopulations
+
+ - Fit = 1 - (Ho/Ht)
+ 
+ Fit = -2.04446 using Ho and Ht calculation
+
+>Fit = Fis + Fst - (Fis*Fst)
+
+Fit = -2.09299 using Fis and Fst calculation
+
+[Calculations are off, but I wasn't able to determine where I'd made a mistake one of the input values]
+
+
+* Calculate Nem from these data. If the migration rate m was found to be 0.1, what would the estimate of Ne be? 
+
+```{r Nem}
+```
+
+* Now assume that Ne is very large, 6-pgd is neutral in these subpopulations, and the migration rate is still O.1. What would the frequencies of the a allele in subpopulations 68 and 69 after 10 generations be? After 25 generations? What biological principle is illustrated by these results?
+
+### Problem 3
+
+
+In D. melanogaster, curly wings is due to a dominant allele Cy that is lethal when homozygous. A population is established with an initial frequency of Cy equal to 0.168. Calculate the expected frequency in the next generation, assuming.
+
+   - The relative fitness of +/+ : Cy/+ is 1:1.
+   - The relative fitness of +/+ : Cy/+ is 1:0.5.
+```{r expectedfreqnextgen}
+```
+### Problem 4 
+If the fitnesses of the genotypes A1A1, A1A2, and A2A2 are 1.5, 1.1, and 1.0, respectively, what are the values of the selection coefficient and the heterozygous effect?
+```{r selectioncoefficient}
+```
+### Problem 5 
+
+
+Industrial melanism refers to the dark pigmentation that evolved in some insects, giving them protective coloration on vegetation darkened by soot in heavily industrialized areas prior to the requirement for smokestack filtra-tion. In one heavily polluted area near Birmingham, England in 1956, 87% of moths of the species Biston betularia had black bodies due to the presence of a dominant gene for melanism (Kettlewell 1956).
+
+* Estimate the frequency of the dominant allele in this population and the frequency of melanics that are heterozygous.
+  * In this species, the frequency of melanic moths increased from a value of 1% in 1848 to a value of 95% in 1898. The species has one generation per year.
+```{r freqdominantallele}
+```
+    
+* Estimate the approximate value of the selection coeffecient s against non-melanics that would be necessary to account for the change in the frequency of the melanic forms.
+```{r selectioncoefficientagainstnonmelanic}
+```
+
+* How many generations would be required for the same change in frequency of melanic forms in a hypothetical case in which the allele for melanism is recessive, assuming the same value of s against nonmelanics
+```{r generationnumbermelanismfreq}
+
+```
+
+### Problem 6
+Experimental populations of Drosophila pseudoobscura were established and periodically treated with weak doses of the insecticide DDT (Anderson et al. 1968). One population was initially polymorphic for five different inversions in the third chromosome, in approximately equal frequencies. After 13 generations, three of the inversions had disappeared from the population. The two that remained were Standard (ST) and Arrowhead (AR). Changes in frequencv of each inversion were monitored, and from the values for the first nine generations the relative fitnesses of ST/ST, ST/AR, and AR/AR genotypes were estimated as 0.47, 1.0, and 0.62, respectively. Because the inversions yield almost no recombinant gametes, each type can be considered as an "allele." What equilibrium frequency of ST is predicted? What equilibrium value of is predicted?
+
+```{r equilibrium}
+```
