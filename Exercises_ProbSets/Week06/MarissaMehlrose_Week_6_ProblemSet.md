@@ -15,28 +15,47 @@ Where *Adh<sup>F</sup>* and *Adh<sup>S</sup>* are the allozyme alleles of *Adh* 
    * Test for the presence of linkage disequilibrium
    
 AB = G1 = (p1) (p2)
+
 Ab = G2 = (p1) (q2)
+
 aB = G3 = (q1) (p2) 
+
 ab = G4 = (q1) (q2)
 
 p1 and q1 are the frequency of the alleles
+
 AB= F+
+
 Ab= F-
+
 aB= s+
+
 ab= s-
 
+
 p1= F frequency = 25/34 = 0.735
+
 q1= s frequency = 9/34 = 0.265
+
 P2= + frequency = 26/34 = 0.765
+
 q2= - frequency = 8/34 = 0.235
 
+
+
 G1= 0.562275
+
 G2= 0.172725
+
 G3= 0.202725
+
 G4= 0.062275
 
+
 D = (G1 G4) − (G2 G3)
+
 D = (0.035) - (0.035)
+
 D = 0
 
    * If significant, express *D* relative to its theoretical maximum or minimum.
@@ -60,21 +79,36 @@ Since D = 0 the population is at equilibrium and is not significant.
 
 D'=D/Dmax
 
+
 AB Calculations
+
 D=(G1G4)-(G2G3)
+
 D=(0.25* 0.25)-(0.25 *0.25)
+
 D/Dmax=0/0.25=0
+
 
 BC calculations
+
 D=(G1G4)-(G2G3)
+
 D=(0.25* 0.25)-(0.25 *0.25)
+
 D/Dmax=0/0.25=0
 
+
+
 AC calculations
+
 D=(G1G4)-(G2G3)
+
 D=(0.5* 0.5)-(0 *0)
+
 D=0.25
+
 D/Dmax=0.25/0.25
+
 D' = 1
 
 This seems paradoxical because two of the calculations of alleles at this loci are saying that this is in equilibrium, but the third is very far from equilibrium. 
@@ -119,24 +153,41 @@ These two populations are now combined to form a third:
 | Pop 3| ab | 6320| 0.575|
 
 Population 1 Linkage Disequilibrium
+
 D=(G1G4)-(G2G3)
+
 D=(0.72 * 0.02) - (0.18 * 0.08)
+
 D= (0.0144) - (0.0144)
+
 D=0
+
 The population is in equilibrium.
+
 
 Population 2 Linkage Disequilibrium
+
 D=(G1G4)-(G2G3)
+
 D=(0.03 * 0.63) - (0.27 * 0.07)
+
 D= (0.0189) - (0.0189)
+
 D=0
+
 The population is in equilibrium.
 
+
 Population 3 Linkage Disequilibrium
+
 D=(G1G4)-(G2G3)
+
 D= (0.0927 * 0.575) - (0.262 * 0.071)
+
 D= (0.0533) - (0.0186)
+
 D=0.0347
+
 This population is in disequilibrium.
 
    * What is the effect of pooling of the two populations on linkage equilibrium?
@@ -145,17 +196,28 @@ By pooling the two populations, which were in linkage equilibrium, it makes the 
 
    * Suppose that the recombination rate between loci A/a and B/b is 0.1. What is the expected disequibrium in the offspring of population 3 (the parental gene pool), assuming random mating? In the second generation?
  
+
 D' = D(1−r) where r is the recombination rate
+
 r=0.1
+
 D=0.0347
+
 D' = 0.0347 (1-0.1)
+
 D' = 0.03123
 
+
 Second generation:
+
 D' = D(1−r) where r is the recombination rate
+
 r=0.1
+
 D=0.03123
+
 D' = 0.03123 (1-0.1)
+
 D'= 0.028107
 
    * Can this single episode of admixture be detected in the population established from population 3 after two generations of random mating? Can it be detected in the genotype frequencies at the A/a locus after two generations of random mating? Can it be detected in the genotype frequencies at the B/b locus after two generations of random mating?
@@ -175,11 +237,16 @@ Vp=V<sub>E</sub> + V<sub>G</sub>
 So V<sub>E</sub> would be the value of 10 because those are the inbred lines. 
 V<sub>P</sub> would be 40 because that is the population value. 
 
+
 40=10 + V<sub>G</sub>
+
 30 = V<sub>G</sub>
 
+
 *H*<sup>2</sup> = V<sub>G</sub> / V<sub>P</sub>
+
 *H*<sup>2</sup> = 30/40
+
 *H*<sup>2</sup> = 0.75
 
    * If the inbred lines were crossed, what would be the predicted variance in days to maturation of the F<sub>1</sub> generation?
@@ -199,13 +266,21 @@ Any other progeny (ex. the F<sub>2</sub> generation would return to the Vp=V<sub
 
 7. In a cross between two cultivated inbred varieties of tobacco, the variance in leaf number per plant in the F<sub>1</sub> generation is 1.46 and in the F<sub>2</sub> generation it is 5.97. What are the genotypic and environmental variances? What is the broad-sense heritability in leaf number?
 
+
 Since the populations are inbred, F<sub>1</sub> is the V<sub>E</sub>, so V<sub>E</sub> = 1.46.
+
 Vp=V<sub>E</sub> + V<sub>G</sub>
+
 5.97 = 1.46 + V<sub>G</sub>
+
 V<sub>G</sub> = 4.51
 
+
+
 H<sub>B</sub> = V<sub>G</sub> / V <sub>P</sub>
+
 H<sub>B</sub> = 4.51 / 5.97
+
 H<sub>B</sub> = 0.7554
 
 
