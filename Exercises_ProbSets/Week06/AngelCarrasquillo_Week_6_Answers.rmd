@@ -1,0 +1,56 @@
+# Problem Set 4
+
+1.  $G_{1} = \frac{25}{34} * \frac{26}{34} = 0.56$ $G_{2} = \frac{25}{34} * \frac{8}{34} = 0.17$ $G_{3} = \frac{9}{34} * \frac{26}{34} = 0.20$ $G_{4} = \frac{9}{34} * \frac{8}{34} = 0.06$
+
+$D = G_{1}*G_{4}-G_{3}*G_{2} = 0.0004$ The population is in gametic disequilibrium. $p_{1}q_{2} = \frac{25}{34}*\frac{8}{34} = 0.17$ $p_{2}q_{1} = \frac{26}{34}*\frac{9}{34} = 0.20$ $D_{max} = 0.20$ $D' = \frac{0.0004}{0.2} = 0.002$
+
+2.  $D_{AB} = Ab*aB - AB*ab = 0.25*0.25-0.25*0.25 = 0$ $D_{BC} = Bc*bC - BC*bc = 0.25*0.25-0.25*0.25 = 0$ $D_{AC} = Ac*aC - AC*ac = 0*0-0.5*0.05 = 0.25$ This may seem paraxodical because there is no linkage between A and B or C and B but there is between A and C
+3.  
+
+-   Calculate the two-locus gamete frequencies for each population and the gameticphase imbalance (linkage disequilibrium). Is any population out of linkage equilibrium? |Population|Gamete| Locus-Gamete Frequency| 
+|----------|------|-------| 
+| Pop 1| AB | 0.72| 
+| Pop 1| Ab | 0.18| 
+| Pop 1| aB | 0.08| 
+| Pop 1| ab | 0.02| 
+| Pop 2| AB | 0.03| 
+| Pop 2| Ab | 0.27| 
+| Pop 2| aB | 0.07| 
+| Pop 2| ab | 0.63|
+
+| Population | Gamete | Locus-Gamete Frequency |
+|------------|--------|------------------------|
+| Pop 3      | AB     | 0.09                   |
+| Pop 3      | Ab     | 0.26                   |
+| Pop 3      | aB     | 0.07                   |
+| Pop 3      | ab     | 0.57                   |
+
+$D_{Pop 1} = 0.72*0.02 - 0.18*0.08 = 0$ 
+$D_{Pop 2} = 0.27*0.07 - 0.63*0.03 = 0$ 
+$D_{Pop 3} = 0.26*0.07 - 0.09*0.57 = 0.03$
+Pooling made the populations seem like they were in gametic disequilibrium
+
+$D_{1} = D_{0}(1-0.1) = 0.03*0.9 = 0.027$
+
+
+$D_{2} = D_{0}(1-0.1)^{2} = 0.243$ Yes it can still be detected after 3 generations
+
+4.  
+Above 130: 2 standard deviations from the mean: 2.35% 
+Below 85: 1 standard deviations from the mean: 15.85% 
+Above 85: 100-15.85 = 84.15%
+
+5.
+
+$V_{G} = 10, V_{E} = 30, H^{2} = \frac{10}{40} = 0.25$
+
+$V_{P} = 10$
+
+6.  
+$F_{1}$ would explain the environmental variance while the variance in \$F\_{2} would be explained by heritability.
+
+7.  In a cross between two cultivated inbred varieties of tobacco, the variance in leaf number per plant in the F<sub>1</sub> generation is 1.46 and in the F<sub>2</sub> generation it is 5.97. What are the genotypic and environmental variances? What is the broad-sense heritability in leaf number?
+
+$V_{E} = 5.97-1.46 = 4.51$
+$V_{G} = 1.46$
+$H^{2} = 1.46/5.97 = 0.244$ 
