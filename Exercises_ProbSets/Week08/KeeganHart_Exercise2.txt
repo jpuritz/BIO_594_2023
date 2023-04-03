@@ -1,0 +1,15 @@
+### Exercise 2- Answer these challenges with one line of code
+* I have put a text file, named file, in the directory `sneaky` that’s within the directory `Exercises` that’s within the directory `BIO594` in the `home` directory.  Tell me what the contents of the file are.
+    > the contents of the file is a poem by Walt Whitman
+* Print the first 5 lines of the third column of out.idepth in `/home/BIO594/Exercises/Week_2`
+    > $ head -5 /home/BIO594/Exercises/Week_2/out.idepth | cut -f3
+* Print only the 19th line of the second column of `out.idepth`
+    > $ head -19 /home/BIO594/Exercises/Week_2/out.idepth | tail -1 | cut -f2 
+* Print how many individuals have a MEAN_DEPTH greater than 20.1
+    > $ awk '{sum=sum+$3} END {print sum}' /home/BIO594/Exercises/Week_2/out.idepth
+* Print how many individuals have a MEAN_DEPTH greater than 20.1 but less than 20.25
+    > $ awk '$3 > 20.1 && $3 < 20.25' /home/BIO594/Exercises/Week_2/out.idepth
+* Print the average MEAN_DEPTH
+    > $ awk '{sum=sum+$3} END {print sum/NR}' /home/BIO594/Exercises/Week_2/out.idepth
+* Put your answers in a text file with your name on it in the `~/repos/BIO_594_2022/Exercises_ProbSets/Week08/` directory
+* If you know how, commit the changes to the github repository
