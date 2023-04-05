@@ -40,6 +40,16 @@ Miniconda3 will now be installed into this location:
 
 Press enter and you are good to go.  You may have to sign in again for `conda` to work.
 
+### Last Setup Part
+
+```
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+conda install mamba
+```
+
 
 ### How many loci are there?
 
