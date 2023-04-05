@@ -1,0 +1,45 @@
+Q1.
+[mmehlrose@KITT BIO594]$ /home/BIO594/Exercises/sneaky/file 
+/home/BIO594/Exercises/sneaky/file: line 1: Oh: command not found
+/home/BIO594/Exercises/sneaky/file: line 2: Of: command not found
+/home/BIO594/Exercises/sneaky/file: line 3: syntax error near unexpected token `('
+/home/BIO594/Exercises/sneaky/file: line 3: `Of myself forever reproaching myself, (for who more foolish than I, and who more faithless?)'
+
+Q2. 
+[mmehlrose@KITT BIO594]$ head -5 /home/BIO594/Exercises/Week_2/out.idepth | cut -f3
+MEAN_DEPTH
+19.7475
+19.8769
+20.2284
+19.4391
+
+Q3. 
+[mmehlrose@KITT BIO594]$ sed -n '19p' /home/BIO594/Exercises/Week_2/out.idepth | cut -f2
+8428
+
+Q4. 
+[mmehlrose@KITT BIO594]$ awk '$3 > 20.1' /home/BIO594/Exercises/Week_2/out.idepth 
+INDV	N_SITES	MEAN_DEPTH
+PopA_03	8453	20.2284
+PopA_05	8448	20.4425
+PopA_08	8454	20.1047
+PopA_09	8341	20.2223
+PopA_13	8408	20.6407
+PopA_20	8342	20.1082
+PopB_07	8392	20.2092
+PopB_08	8382	20.2733
+PopB_09	8262	20.2642
+PopB_14	8370	20.2419
+
+Q5. 
+[mmehlrose@KITT BIO594]$ awk '$3 > 20.1 && $3 < 20.25' /home/BIO594/Exercises/Week_2/out.idepth 
+PopA_03	8453	20.2284
+PopA_08	8454	20.1047
+PopA_09	8341	20.2223
+PopA_20	8342	20.1082
+PopB_07	8392	20.2092
+PopB_14	8370	20.2419
+
+Q6. 
+[mmehlrose@KITT BIO594]$ awk '{sum=sum+$3} END {print sum/NR}' /home/BIO594/Exercises/Week_2/out.idepth 
+19.3738
