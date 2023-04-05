@@ -38,7 +38,9 @@ Miniconda3 will now be installed into this location:
   - Or specify a different location below
 ```
 
-Press enter and you are good to go.  You may have to sign in again for `conda` to work.
+Press enter and you are good to go.  
+
+Now log out and log back in.  The `conda` command should then work.
 
 ### Last Setup Part
 
