@@ -9,4 +9,4 @@ I would like you to complete the following and push it to your own folder in thi
   * Call SNPs
   * Filter the SNPs
   * Perform and document all analyses that were demoed during class
-  	* Push to /BIO_594_2022/Exercises/Week07 of the class github repository
+  	* Push to /BIO_594_2022/Exercises/Week_11 of the class github repository
