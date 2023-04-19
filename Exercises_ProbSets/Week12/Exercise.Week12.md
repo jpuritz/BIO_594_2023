@@ -6,6 +6,12 @@ In the directory, `/home/BIO594/Exercises/Week_12`, you will find a few useful f
 
 I would like you to complete the following and push it to your own folder in this repository directory.
 
+* For the simulated data
+  * Filter the SNPs (you actually did this last week)
+  * Run at least two outlier detection programs
+    * Generate a VCF file with only neutral SNPs
+  * Run at least one PCA and one DAPC with the neutral data
+  * Perform at least two analyses from Silliman et al
 * For the realdata
   * Run BayeScan
   * Run BayEnv
@@ -25,7 +31,7 @@ There are also PGDspider configuration files and an R file for BayeScan output p
 
 ## Part 2
 
-* Repeat the redundancy analysis documented [here](https://github.com/amyzyck/EecSeq_NB_EasternOyster/blob/master/Analysis/PopGen_SeaGen_Analyses/RedundancyAnalysis/RDA_Outlier_Hap.Rmd)
+* Repeat the redundancy analysis documented [here](https://github.com/Tom-Jenkins/seascape_rda_tutorial)
 
 ### Have fun!
 
