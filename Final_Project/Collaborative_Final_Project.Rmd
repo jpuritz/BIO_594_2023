@@ -66,8 +66,8 @@ done
 #FST
 
 Jon's text
-<<<<<<< HEAD
 
-=======
+Karis's text 
+
 Did this work?-Marissa
->>>>>>> adbc5b0ba9a08fb7304883be052f140bcf8e10ac
+
