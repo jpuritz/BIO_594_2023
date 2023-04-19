@@ -261,7 +261,5 @@ $$ \sqrt(.125) = .354 $$
 
 null allele freq: $$\sqrt(.72) = .85 $$
 
-
-
     B. Estimate the percentage of *band-present* individuals (not the overall frequencies) that are heterozygous at each of the two markers.  What biological principle does the difference between these two percentages illustrate?
-
+have to take heterozygotes and divide it by the total. shows the relationship between percentages when we aere within hardy weinberg. the null allele is more likely to be in the homozygotes than within the heterozygotes. 

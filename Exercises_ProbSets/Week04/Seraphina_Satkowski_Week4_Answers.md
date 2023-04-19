@@ -6,6 +6,8 @@
 ## Problems
 
 1.  What is the probability that a particular allele has at least one copy in the next generation?  The surprising answer quickly becomes independent of population size as *N* becomes larger.  (Hint: Use one minus the probability that the allele has no copies in the next generation and this equation: $\lim\limits_{\varepsilon \to \infty}(1+\varepsilon*x)^\frac{1}{\varepsilon} = e^x$)
+$$probability=(1-\frac{1}{2N})^{2N}$$
+$x=-1$ and $\varepsilon=$
 
 2.  A highly isolation colony of the month *Panaxia dominula* near Oxford, England has been instenstively studied by Ford and collaborators over the period of 1928-1968 (Ford and Sheppard 1969).  This speices has one generation per year, and estimates of the population size were caried out yearly begnining in 1941.  For the years 1950-1961, inclusive, estimates of the population size were: 
 
@@ -42,7 +44,7 @@ $$Nc=29.6$$
 $$Ne=\frac{5}{\frac{1}{2}+\frac{1}{3}+\frac{1}{25}+\frac{1}{32}+\frac{1}{86}}$$
 $$Ne=\frac{5}{.912}=5.48$$
 $$Ne=5.48$$
-The biological principle that is illustrated here is fluctuating population size
+The biological principle that is illustrated here is founder effect and fluctuating population size
 #
 5.  You genotype a species of grasshopper along a transect in the European Alsp.  Near Munich, Germany, you sample 120 individuals; near Inssbruck, Austria, you sample 122 individuals;  near Verona, Italy you sample 118 individuals.  You find the following genotypes:
 
