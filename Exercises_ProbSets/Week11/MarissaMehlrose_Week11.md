@@ -1,6 +1,6 @@
-#Week 11 Exercise
+# Week 11 Exercise
 
-##Calling and Filtering SNPs
+## Calling and Filtering SNPs
 ```
 (base) [mmehlrose@KITT ~]$ mkdir Week_11
 (base) [mmehlrose@KITT ~]$ cd Week_11/
