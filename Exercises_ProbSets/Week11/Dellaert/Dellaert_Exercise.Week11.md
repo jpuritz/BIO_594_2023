@@ -12,7 +12,10 @@ I would like you to complete the following and push it to your own folder in thi
 ```
 mkdir Week11
 cd Week11
-ln -s /home/BIO594/Exercises/Week_11/* ./
+
+mkdir callSNPs
+cd callSNPs
+ln -s /home/BIO594/Exercises/Week_11/*.fq.gz .
 
 mamba create -n Week11_Ex ddocent
 source activate Week11_Ex
@@ -76,7 +79,7 @@ Got a lot of warnings but ended with this:
 
 - After filtering, kept 80 out of 80 Individuals
 - Outputting VCF file...
-- After filtering, kept 1922 out of a possible 3025 Sites
+- After filtering, kept 1969 out of a possible 3287 Sites
 - Run Time = 0.00 seconds
 
 Now our filtered VCF is: raw.g5mac3.recode.vcf
@@ -88,6 +91,8 @@ Recode genotypes that have less than 3 reads
 ```
 vcftools --vcf raw.g5mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.g5mac3dp3
 ```
+
+After filtering, kept 1969 out of a possible 1969 Sites
 
 Checking our filtering using Jon's script:
 
@@ -102,18 +107,17 @@ Result:
 - It report a low range, based on a 50% binomial probability of observing the second allele in a heterozygote and a high range based on a 25% probability.
 - Potential genotyping errors from genotypes from only 1 read range from 0.0 to 0.0
 - Potential genotyping errors from genotypes from only 2 reads range from 0.0 to 0.0
-- Potential genotyping errors from genotypes from only 3 reads range from 46.125 to 154.98
-- Potential genotyping errors from genotypes from only 4 reads range from 21.875 to 110.6
+- Potential genotyping errors from genotypes from only 3 reads range from  43.875 to 147.42
+- Potential genotyping errors from genotypes from only 4 reads range from 20.9375 to 105.86
 - Potential genotyping errors from genotypes from only 5 reads range from 13.96875 to 105
-- 80 number of individuals and 1922 equals 153760 total genotypes
-- Total genotypes not counting missing data 153749
-- Total potential error rate is between 0.0005331335488360899 and 0.0024102920994608095
+- 80 number of individuals and 1969 equals 157520 total genotypes
+- Total genotypes not counting missing data 157069
+- Total potential error rate is between 0.0005015709656265718 and 0.0022810357231535182
 - SCORCHED EARTH SCENARIO
 - WHAT IF ALL LOW DEPTH HOMOZYGOTE GENOTYPES ARE ERRORS?????
-- The total SCORCHED EARTH error rate is 0.0075837891628563435.
+- The total SCORCHED EARTH error rate is 0.0072133902934379155.
 
-
- The next step is to get rid of individuals that did not sequence well.  We can do this by assessing individual levels of missing data.
+The next step is to get rid of individuals that did not sequence well.  We can do this by assessing individual levels of missing data.
 
 ```
 vcftools --vcf raw.g5mac3dp3.recode.vcf --missing-indv
@@ -123,7 +127,7 @@ vcftools --vcf raw.g5mac3dp3.recode.vcf --missing-indv
 
 - After filtering, kept 80 out of 80 Individuals
 - Outputting Individual Missingness
-- After filtering, kept 1922 out of a possible 1922 Sites
+- After filtering, kept 1969 out of a possible 1969 Sites
 
 Plot data
 
@@ -146,7 +150,7 @@ EOF
 
 ![Graph1.png](https://raw.githubusercontent.com/jpuritz/BIO_594_2023/main/Exercises_ProbSets/Week11/Dellaert/Graph1.png)
 
-It looks like about 65 individuals have less than 0.01 missing data and the other 15 have between 0.01 and 0.015 missing data.
+It looks like about 75 individuals have less than 0.01 missing data and the other 5 have between 0.01 and 0.015 missing data.
 
 Therefore, I am not going to remove any individuals. 
 
@@ -156,23 +160,20 @@ Now: restrict the data to variants called in a high percentage of individuals an
 vcftools --vcf raw.g5mac3dp3.recode.vcf --max-missing 0.95 --maf 0.05 --recode --recode-INFO-all --out DP3g95maf05 --min-meanDP 20
 ```
 
-**After filtering, kept 1153 out of a possible 1922 Sites**
-
-popmap = LibraryInfo
+**After filtering, kept 1161 out of a possible 1969 Sites**
 
 ```
-head LibraryInfo
+head popmap
 
-mawk '{print $1, $2}' LibraryInfo | mawk '$2 == "PopA"' > A.keep
-mawk '{print $1, $2}' LibraryInfo | mawk '$2 == "PopB"' > B.keep
-mawk '{print $1, $2}' LibraryInfo | mawk '$2 == "PopB"' > C.keep
-mawk '{print $1, $2}' LibraryInfo | mawk '$2 == "PopB"' > D.keep
+mawk '$2 == "PopA"' popmap > A.keep
+mawk '$2 == "PopB"' popmap > B.keep
+mawk '$2 == "PopB"' popmap > C.keep
+mawk '$2 == "PopB"' popmap > D.keep
 ```
 
  Next, we use VCFtools to estimate missing data for loci in each population
 
 ```
-
 vcftools --vcf DP3g95maf05.recode.vcf --keep A.keep --missing-site --out A
 
 vcftools --vcf DP3g95maf05.recode.vcf --keep B.keep --missing-site --out B
@@ -188,7 +189,7 @@ For all 4, the output was:
 
 #Outputting Site Missingness
 
-#After filtering, kept 1153 out of a possible 1153 Sites
+#After filtering, kept 1161 out of a possible 1161 Sites
 
 - Combine the 4 files
 - Make a list of loci about the threshold of 10% missing data to remove. 
@@ -209,6 +210,8 @@ The -s tells the filter to apply to sites, not just alleles"
 
 
 ```
+vcftools --vcf DP3g95maf05.recode.vcf --exclude-positions badloci --recode --recode-INFO-all --out DP3g95p5maf05
+
 vcffilter -s -f "AB > 0.25 & AB < 0.75 | AB < 0.01" DP3g95p5maf05.recode.vcf > DP3g95p5maf05.fil1.vcf
 ```
 
@@ -218,15 +221,15 @@ To see how many loci are now in the VCF file, you could feed it into VCFtools or
 mawk '!/#/' DP3g95p5maf05.recode.vcf | wc -l
 ```
 
-1153
+1161
 
 ```
 mawk '!/#/' DP3g95p5maf05.fil1.vcf | wc -l
 ```
 
-1147
+1153
 
-### Filtered 6 loci.
+### Filtered 8 loci.
 
 "The next filter we will apply filters out sites that have reads from both strands.  For GWAS and even RNAseq, this can be a good thing.
 
@@ -238,7 +241,7 @@ vcffilter -f "SAF / SAR > 100 & SRF / SRR > 100 | SAR / SAF > 100 & SRR / SRF > 
 mawk '!/#/' DP3g95p5maf05.fil2.vcf | wc -l
 ```
 
-Still have 1147 loci.
+Still have 1153 loci.
 
 "The next filter looks at the ratio of mapping qualities between reference and alternate alleles. The rationale here is that, again, because RADseq loci and alleles all should start from the same genomic location there should not be large discrepancy between the mapping qualities of two alleles."
 
@@ -249,7 +252,7 @@ vcffilter -f "MQM / MQMR > 0.9 & MQM / MQMR < 1.05" DP3g95p5maf05.fil2.vcf > DP3
 mawk '!/#/' DP3g95p5maf05.fil3.vcf | wc -l
 ```
 
-Still have 1147 loci.
+Still have 1153 loci.
 
 "Yet another filter that can be applied is whether or not their is a discrepancy in the properly paired status of for reads supporting reference or alternate alleles.
 
@@ -260,7 +263,7 @@ vcffilter -f "PAIRED > 0.05 & PAIREDR > 0.05 & PAIREDR / PAIRED < 1.75 & PAIREDR
 mawk '!/#/' DP3g95p5maf05.fil4.vcf | wc -l
 ```
 
-Still have 1147 loci.
+Still have 1153 loci.
 
 "The next filter we will apply is to look at the ration of locus quality score to depth"
 
@@ -272,7 +275,7 @@ vcffilter -f "QUAL / DP > 0.25" DP3g95p5maf05.fil4.vcf > DP3g95p5maf05.fil5.vcf
 mawk '!/#/' DP3g95p5maf05.fil5.vcf | wc -l
 ```
 
-1145: Filtered 2 additional loci.
+1151: Filtered 2 additional loci.
 
 Second filter: 
 
@@ -290,27 +293,27 @@ mawk '!/#/' DP3g95p5maf05.fil5.vcf | cut -f1,2,6 > DP3g95p5maf05.fil5.vcf.loci.q
 mawk '{ sum += $1; n++ } END { if (n > 0) print sum / n; }' DP3g95p5maf05.fil5.DEPTH
 ```
 
-Mean depth: 4705.66
+Mean depth: 4702.78
 
 3. Now the the mean plus 3X the square of the mean
 
 ```
-python2.7 -c "print int(4706+3*(4706**0.5))"
+python2.7 -c "print int(4703+3*(4703**0.5))"
 ```
 
-4911
+4908
 
 4. Next we paste the depth and quality files together and find the loci above the cutoff that do not have quality scores 2 times the depth, then remove those sites and recalculate depth across loci with vcftools
 
 ```
-paste DP3g95p5maf05.fil5.vcf.loci.qual DP3g95p5maf05.fil5.DEPTH | mawk -v x=4911 '$4 > x' | mawk '$3 < 2 * $4' > DP3g95p5maf05.fil5.lowQDloci
+paste DP3g95p5maf05.fil5.vcf.loci.qual DP3g95p5maf05.fil5.DEPTH | mawk -v x=4908 '$4 > x' | mawk '$3 < 2 * $4' > DP3g95p5maf05.fil5.lowQDloci
 
 vcftools --vcf DP3g95p5maf05.fil5.vcf --site-depth --exclude-positions DP3g95p5maf05.fil5.lowQDloci --out DP3g95p5maf05.fil5
 ```
 
 - After filtering, kept 80 out of 80 Individuals
 - Outputting Depth for Each Site
-- After filtering, kept 1099 out of a possible 1145 Sites
+- **After filtering, kept 1068 out of a possible 1151 Sites**
 
 5. Look at the depth calculated by vcftools, x = 80 (# of individuals)
 
@@ -365,7 +368,7 @@ vcfallelicprimitives DP3g95p5maf05.fil5.vcf --keep-info --keep-geno > DP3g95p5ma
 vcftools --vcf DP3g95p5maf05.prim.vcf --remove-indels --recode --recode-INFO-all --out SNP.DP3g95p5maf05
 ```
 
-**After filtering, kept 980 out of a possible 1212 Sites**
+**After filtering, kept 937 out of a possible 1206 Sites**
 
 Now, let's apply the HWE filter.
 
@@ -373,7 +376,7 @@ Now, let's apply the HWE filter.
 perl filter_hwe_by_pop.pl -v SNP.DP3g95p5maf05.recode.vcf -p popmap -o SNP.DP3g95p5maf05.HWE -h 0.01
 ```
 
-**Kept 978 of a possible 980 loci (filtered 2 loci)**
+**Kept 936 of a possible 937 loci (filtered 1 loci)**
 
 
 
