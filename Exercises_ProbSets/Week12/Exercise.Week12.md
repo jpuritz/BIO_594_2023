@@ -26,8 +26,6 @@ There are also PGDspider configuration files and an R file for BayeScan output p
 ## Part 2
 
 * Repeat the redundancy analysis documented [here](https://github.com/amyzyck/EecSeq_NB_EasternOyster/blob/master/Analysis/PopGen_SeaGen_Analyses/RedundancyAnalysis/RDA_Outlier_Hap.Rmd)
-* Repeat the EEMS analysis documented [here](https://github.com/amyzyck/EecSeq_NB_EasternOyster/blob/master/Analysis/PopGen_SeaGen_Analyses/EEMS/NB_EEMS_OutlierHap.md)
-
 
 ### Have fun!
 
