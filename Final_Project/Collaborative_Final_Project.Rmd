@@ -52,3 +52,18 @@ done
 
 ```
 
+
+#SNP Filtering
+
+#Kinship Analysis
+
+#Outlier Analysis
+
+#DAPC
+
+#PCA
+
+#FST
+
+Jon's text
+

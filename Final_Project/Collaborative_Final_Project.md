@@ -58,3 +58,15 @@ mv ${NAMES2[$i]}_1.fastq.gz ${NAMES[$i]}.F.fq.gz
 mv ${NAMES2[$i]}_2.fastq.gz ${NAMES[$i]}.R.fq.gz
 done
 ```
+
+\#SNP Filtering
+
+\#Kinship Analysis
+
+\#Outlier Analysis
+
+\#DAPC
+
+\#PCA
+
+\#FST
