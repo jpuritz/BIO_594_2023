@@ -59,9 +59,7 @@ done
 
 #Outlier Analysis
 
-#DAPC
-
-#PCA
+#DAPC and PCA
 
 #FST
 

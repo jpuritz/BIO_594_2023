@@ -1,0 +1,20 @@
+---
+title: "Final Project for BIO 594 2023"
+output: github_document
+author: "Marissa Mehlrose"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GitHub Documents
+
+This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+
+## Important Note
+We are breaking up the final project into multiple `.Rmd` files, but they will be combined and knitted together at the end.  Please keep the naming convention that is in the original [repo](https://github.com/pdimens/2022-Tatlanticus_popgen).
+This means that all files and directories should match.  This will help when one section depends on data from another.
+
+# DAPC and PCA
+
