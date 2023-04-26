@@ -651,3 +651,8 @@ compoplot(dapc1, subset=temp, posi="bottomright", txt.leg=paste("Cluster", 1:4),
 ```
 
 
+## How do I filter outlier loci out to create a neutral VCF file?
+
+See code below [here](https://github.com/amyzyck/RADseq_Uca-rapax_2016/blob/master/Scripts/OutlierDetection/OutlierDetection_UcaRapax.md#combine-all-outlier-loci-into-one-file)
+
+Many different ways to do this though!!!
