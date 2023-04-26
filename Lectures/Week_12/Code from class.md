@@ -402,7 +402,7 @@ First, convert vcf to BayEnv input
 ```
 cp /home/BIO594/DATA/Week7/example/SNPBayEnv.spid .
 cp /home/BIO594/DATA/Week7/example/environ .
-java -jar /usr/local/bin/PGDSpider2-cli.jar -inputfile SNP.TRSdp5p05FHWE2A.recode.vcf -outputfile SNP.TRSdp5p05FHWEBayEnv.txt -spid SNPBayEnv.spid
+PGDSpider2-cli -inputfile SNP.TRSdp5p05FHWE2A.recode.vcf -outputfile SNP.TRSdp5p05FHWEBayEnv.txt -spid SNPBayEnv.spid
 ```
 
 ```
