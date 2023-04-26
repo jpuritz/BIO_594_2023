@@ -2,7 +2,7 @@
 
 create environment
 
-`mamba create -n week7 ddocent`
+`mamba create -n week7 ddocent vcflib=1.0.3`
 `mamba activate week7`
 
 ## Calling SNPs
