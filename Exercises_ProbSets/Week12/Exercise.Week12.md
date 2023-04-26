@@ -9,7 +9,7 @@ I would like you to complete the following and push it to your own folder in thi
 * For the simulated data
   * Filter the SNPs (you actually did this last week)
   * Run at least two outlier detection programs
-    * Generate a VCF file with only neutral SNPs
+    * Generate a VCF file with only neutral SNPs  
   * Run at least one PCA and one DAPC with the neutral data
   * Perform at least two analyses from Silliman et al
 * For the realdata
