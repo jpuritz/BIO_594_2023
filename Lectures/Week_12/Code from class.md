@@ -227,10 +227,11 @@ Copy a PGDspider configuration file and file to map individuals to population
 ```
 cp /home/BIO594/DATA/Week7/example/BSsnp.spid .
 ln -s ../popmap .
+mamba install pgdspider
 ```
 Now, run PGDspider
 ```
-java -jar /usr/local/bin/PGDSpider2-cli.jar -inputfile SNP.TRSdp5p05FHWEmaf05.recode.vcf -outputfile SNP.TRSdp5p05FHWEBS -spid BSsnp.spid
+PGDSpider2-cli -inputfile SNP.TRSdp5p05FHWEmaf05.recode.vcf -outputfile SNP.TRSdp5p05FHWEBS -spid BSsnp.spid
 ```
 Output:
 ```
