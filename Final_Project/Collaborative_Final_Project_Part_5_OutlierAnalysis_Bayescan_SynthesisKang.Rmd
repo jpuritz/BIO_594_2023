@@ -1,7 +1,7 @@
 ---
 title: "Final Project for BIO 594 2023"
 output: github_document
-author: "Angel Carrasquillo"
+author: "Karis Kang"
 ---
 
 ```{r setup, include=FALSE}
@@ -17,4 +17,6 @@ We are breaking up the final project into multiple `.Rmd` files, but they will b
 This means that all files and directories should match.  This will help when one section depends on data from another.
 
 # Outlier Analysis
+## Bayescan
+## Synthesizing all results
 
