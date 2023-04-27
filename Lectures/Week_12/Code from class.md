@@ -2,7 +2,8 @@
 
 create environment
 
-`mamba create -n week7 ddocent`
+`mamba create -n week7 ddocent vcflib=1.0.3`
+
 `mamba activate week7`
 
 ## Calling SNPs
@@ -227,10 +228,11 @@ Copy a PGDspider configuration file and file to map individuals to population
 ```
 cp /home/BIO594/DATA/Week7/example/BSsnp.spid .
 ln -s ../popmap .
+mamba install pgdspider
 ```
 Now, run PGDspider
 ```
-java -jar /usr/local/bin/PGDSpider2-cli.jar -inputfile SNP.TRSdp5p05FHWEmaf05.recode.vcf -outputfile SNP.TRSdp5p05FHWEBS -spid BSsnp.spid
+PGDSpider2-cli -inputfile SNP.TRSdp5p05FHWEmaf05.recode.vcf -outputfile SNP.TRSdp5p05FHWEBS -spid BSsnp.spid
 ```
 Output:
 ```
@@ -401,7 +403,7 @@ First, convert vcf to BayEnv input
 ```
 cp /home/BIO594/DATA/Week7/example/SNPBayEnv.spid .
 cp /home/BIO594/DATA/Week7/example/environ .
-java -jar /usr/local/bin/PGDSpider2-cli.jar -inputfile SNP.TRSdp5p05FHWE2A.recode.vcf -outputfile SNP.TRSdp5p05FHWEBayEnv.txt -spid SNPBayEnv.spid
+PGDSpider2-cli -inputfile SNP.TRSdp5p05FHWE2A.recode.vcf -outputfile SNP.TRSdp5p05FHWEBayEnv.txt -spid SNPBayEnv.spid
 ```
 
 ```
@@ -649,3 +651,8 @@ compoplot(dapc1, subset=temp, posi="bottomright", txt.leg=paste("Cluster", 1:4),
 ```
 
 
+## How do I filter outlier loci out to create a neutral VCF file?
+
+See code below "Combine all outlier loci into one file" [here](https://github.com/amyzyck/RADseq_Uca-rapax_2016/blob/master/Scripts/OutlierDetection/OutlierDetection_UcaRapax.md#combine-all-outlier-loci-into-one-file)
+
+Many different ways to do this though!!!
