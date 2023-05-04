@@ -1,0 +1,180 @@
+#Week 11
+##Snp Calling Using dDocent
+```{bash}
+dDocent
+dDocent 2.2.7 
+
+Contact jpuritz@gmail.com with any problems 
+
+ 
+Checking for required software
+
+All required software is installed!
+
+dDocent run started Sat Dec 17 23:28:22 EST 2016 
+
+80 individuals are detected. Is this correct? Enter yes or no and press [ENTER]
+dDocent detects 80 processors available on this system.
+Please enter the maximum number of processors to use for this analysis.
+20
+Do you want to quality trim your reads?
+Type yes or no and press [ENTER]?
+yes
+Do you want to perform an assembly?
+Type yes or no and press [ENTER].
+no
+
+Reference contigs need to be in a file named reference.fasta
+
+Do you want to map reads?  Type yes or no and press [ENTER]
+yes
+BWA will be used to map reads.  You may need to adjust -A -B and -O parameters for your taxa.
+Would you like to enter a new parameters now? Type yes or no and press [ENTER]
+no
+Proceeding with default values for BWA read mapping.
+Do you want to use FreeBayes to call SNPs?  Please type yes or no and press [ENTER]
+yes
+
+Please enter your email address.  dDocent will email you when it is finished running.
+Don't worry; dDocent has no financial need to sell your email address to spammers.
+alcarr@uri.edu
+```
+
+##Keeping SNPs that have been genotyped in 50% of individuals, with a minimum quality score of 30, and a minor allele count of 3.
+```{bash}
+vcftools --gzvcf TotalRawSNPs.vcf --max-missing 0.5 --mac 3 --minQ 30 --recode --recode-INFO-all --out raw.g5mac3
+```
+
+##Recoding genotypes with less than 3 reads
+```{bash}
+vcftools --vcf raw.g5mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.g5mac3dp3
+```
+
+##Checking for indidivuals that did not sequence well
+```{bash}
+vcftools --vcf raw.g5mac3dp3.recode.vcf --missing-indv
+cat out.imiss
+INDV    N_DATA  N_GENOTYPES_FILTERED    N_MISS  F_MISS
+PopA_001        1962    0       25      0.0127421
+PopA_002        1962    0       15      0.00764526
+PopA_003        1962    0       8       0.00407747
+PopA_004        1962    0       15      0.00764526
+PopA_005        1962    0       20      0.0101937
+PopA_006        1962    0       26      0.0132518
+PopA_007        1962    0       13      0.00662589
+PopA_008        1962    0       18      0.00917431
+PopA_009        1962    0       23      0.0117227
+PopA_010        1962    0       15      0.00764526
+PopA_011        1962    0       18      0.00917431
+PopA_012        1962    0       21      0.0107034
+PopA_013        1962    0       22      0.011213
+PopA_014        1962    0       19      0.009684
+PopA_015        1962    0       14      0.00713558
+PopA_016        1962    0       25      0.0127421
+PopA_017        1962    0       19      0.009684
+PopA_018        1962    0       20      0.0101937
+PopA_019        1962    0       29      0.0147808
+PopA_020        1962    0       11      0.00560652
+PopB_001        1962    0       22      0.011213
+PopB_002        1962    0       19      0.009684
+PopB_003        1962    0       25      0.0127421
+PopB_004        1962    0       15      0.00764526
+PopB_005        1962    0       5       0.00254842
+PopB_006        1962    0       15      0.00764526
+PopB_007        1962    0       18      0.00917431
+PopB_008        1962    0       15      0.00764526
+PopB_009        1962    0       10      0.00509684
+PopB_010        1962    0       14      0.00713558
+PopB_011        1962    0       14      0.00713558
+PopB_012        1962    0       17      0.00866463
+PopB_013        1962    0       14      0.00713558
+PopB_014        1962    0       16      0.00815494
+PopB_015        1962    0       24      0.0122324
+PopB_016        1962    0       17      0.00866463
+PopB_017        1962    0       25      0.0127421
+PopB_018        1962    0       9       0.00458716
+PopB_019        1962    0       18      0.00917431
+PopB_020        1962    0       11      0.00560652
+PopC_001        1962    0       15      0.00764526
+PopC_002        1962    0       17      0.00866463
+PopC_003        1962    0       14      0.00713558
+PopC_004        1962    0       11      0.00560652
+PopC_005        1962    0       23      0.0117227
+PopC_006        1962    0       24      0.0122324
+PopC_007        1962    0       27      0.0137615
+PopC_008        1962    0       23      0.0117227
+PopC_009        1962    0       5       0.00254842
+PopC_010        1962    0       23      0.0117227
+PopC_011        1962    0       11      0.00560652
+PopC_012        1962    0       23      0.0117227
+PopC_013        1962    0       18      0.00917431
+PopC_014        1962    0       31      0.0158002
+PopC_015        1962    0       16      0.00815494
+PopC_016        1962    0       20      0.0101937
+PopC_017        1962    0       13      0.00662589
+PopC_018        1962    0       15      0.00764526
+PopC_019        1962    0       29      0.0147808
+PopC_020        1962    0       20      0.0101937
+PopD_001        1962    0       18      0.00917431
+PopD_002        1962    0       18      0.00917431
+PopD_003        1962    0       16      0.00815494
+PopD_004        1962    0       13      0.00662589
+PopD_005        1962    0       17      0.00866463
+PopD_006        1962    0       17      0.00866463
+PopD_007        1962    0       25      0.0127421
+PopD_008        1962    0       10      0.00509684
+PopD_009        1962    0       20      0.0101937
+PopD_010        1962    0       28      0.0142712
+PopD_011        1962    0       18      0.00917431
+PopD_012        1962    0       24      0.0122324
+PopD_013        1962    0       18      0.00917431
+PopD_014        1962    0       21      0.0107034
+PopD_015        1962    0       16      0.00815494
+PopD_016        1962    0       21      0.0107034
+PopD_017        1962    0       20      0.0101937
+PopD_018        1962    0       17      0.00866463
+PopD_019        1962    0       26      0.0132518
+PopD_020        1962    0       22      0.011213
+
+```
+All of these look really good!
+
+##Using pop_missing_filter.sh to fiter based on missingness in each population
+```{bash}
+curl -L -O https://github.com/jpuritz/dDocent/raw/master/scripts/pop_missing_filter.sh
+chmod +x pop_missing_filter.sh
+./pop_missing_filter.sh
+pop_missing_filter.sh DP3g95maf05.recode.vcf popmap 0.1 4 DP3g95p5maf05
+```
+
+##Using dDocent_filters to automate filtering based on depth
+```{bash}
+curl -L -O https://github.com/jpuritz/dDocent/raw/master/scripts/dDocent_filters
+chmod +x dDocent_filters
+./dDocent_filters
+dDocent_filters DP3g95p5maf05.recode.vcf DP3g95p5maf05.FIL
+```
+
+##Download HWE filter to remove variant calls
+```{bash}
+curl -L -O https://github.com/jpuritz/dDocent/raw/master/scripts/filter_hwe_by_pop.pl
+chmod +x filter_hwe_by_pop.pl
+```
+
+##Convert variants to SNPs and remove INDELS
+```{bash}
+vcfallelicprimitives DP3g95p5maf05.FIL.fil.recode.vcf --keep-info --keep-geno > DP3g95p5maf05.prim.vcf
+vcftools --vcf DP3g95p5maf05.prim.vcf --remove-indels --recode --recode-INFO-all --out SNP.DP3g95p5maf05
+```
+
+##Use HWE Filter
+```{bash}
+./filter_hwe_by_pop.pl -v SNP.DP3g95p5maf05.recode.vcf -p popmap -o SNP.DP3g95p5maf05.HWE -h 0.01
+```
+
+##Calculate Final Number of SNPs
+```{bash}
+mawk '!/#/' SNP.DP3g95p5maf05.HWE.recode.vcf | wc -l
+803
+```
+We are left with 803 SNPS from 80 individuals
