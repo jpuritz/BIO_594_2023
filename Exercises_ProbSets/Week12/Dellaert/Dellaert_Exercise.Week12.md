@@ -34,18 +34,12 @@ There are also PGDspider configuration files and an R file for BayeScan output p
 
 ### Have fun!
 
-## Part 1
-
+# Part 1: Simulated Data
 
   * Run at least two outlier detection programs
     * Generate a VCF file with only neutral SNPs  
   * Run at least one PCA and one DAPC with the neutral data
   * Perform at least two analyses from Silliman et al
-* For the realdata
-  * Run BayeScan
-  * Run BayEnv
-  * Run at least one PCA and one DAPC using outlier free data set
-  * Perform at least two analyses from Silliman et al	
 
 
 ### Create environment
@@ -111,7 +105,7 @@ Bayesscan found 5 outliers:
 [1] 179 307 308 671 672
 
 
-![BayesScan.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/BayesScan.png?raw=true)
+![BayesScan.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/BayesScan.png?raw=true)
 
 ### Outlier Detection method 2: PCAadapt
 
@@ -490,3 +484,77 @@ compoplot(dapc1, subset=temp, posi="bottomright", txt.leg=paste("Cluster", 1:4),
 ## Perform at least two analyses from Silliman et al
 
 ### Will come back to this...
+
+
+
+# Part 1: Real Data
+* For the realdata
+  * Run BayeScan
+  * Run BayEnv
+  * Run at least one PCA and one DAPC using outlier free data set
+  * Perform at least two analyses from Silliman et al	
+
+## Load environment and copy over data
+```bash
+mamba activate Week12
+
+cd Week12
+
+mkdir real_data
+cd real_data
+
+cp /home/BIO594/Exercises/Week_12/realdata/* .
+
+ls
+```
+
+### Converting from VCF to other outputs
+
+Copy a PGDspider configuration file and file to map individuals to population
+
+Run PGDspider
+```bash
+PGDSpider2-cli -inputfile SNP.DP3g98maf01_85INDoutFIL.NO2a.HWE.FIL.recode.vcf -outputfile BS_input -spid BSsnp.spid
+```
+
+Output file is called: BS_input
+
+## Run BayeScan
+
+```bash
+BayeScan2.1_linux64bits BS_input -nbp 30 -thin 20
+```
+
+Here as of 12PM May 7
+
+Copy source file
+
+```bash
+cp /home/BIO594/DATA/Week7/example/plot_R.r .
+```
+
+Rstudio 
+
+```R
+setwd("~/Week12/real_data")
+source("plot_R.r")
+plot_bayescan("BS_input_fst.txt")
+```
+
+Bayesscan found 5 outliers: 
+
+[1] 179 307 308 671 672
+
+
+![BayesScan.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/BayesScan.png?raw=true)
+
+## Run BayEnv
+
+## Run at least one PCA and one DAPC using outlier free data set
+
+## Perform at least two analyses from Silliman et al	
+
+
+# Part 2
+
+* Repeat the redundancy analysis documented [here](https://github.com/Tom-Jenkins/seascape_rda_tutorial)
