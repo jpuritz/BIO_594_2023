@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
 
+# Link to original github: https://github.com/pdimens/2022-Tatlanticus_popgen
 
 # Data setup
 The data set is too large to evaluate on KITT, so I will run the initial SNP calling on an HPC.  The code below is a way to download data from the SRA and rename for dDocent.  First thing is to download the metadata for all of the sequences we want using the BioProject for the paper.  The meta data comes from [https://www.ncbi.nlm.nih.gov/bioproject/PRJNA504598/](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA504598/).  Click on SRA experiments and then "Send to Run Selector and then download it.  I have placed in `BIO_594_2023/Final_Project/input`.  The full file is `SraRunTable.txt` but I made a much simpler csv file `SraRunTable.csv` to work with

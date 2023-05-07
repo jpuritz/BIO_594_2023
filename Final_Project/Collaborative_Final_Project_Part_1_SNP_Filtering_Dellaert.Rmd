@@ -16,5 +16,43 @@ This is an R Markdown format used for publishing markdown documents to GitHub. W
 We are breaking up the final project into multiple `.Rmd` files, but they will be combined and knitted together at the end.  Please keep the naming convention that is in the original [repo](https://github.com/pdimens/2022-Tatlanticus_popgen).
 This means that all files and directories should match.  This will help when one section depends on data from another.
 
-# SNP Filtering
+# Link to original github: https://github.com/pdimens/2022-Tatlanticus_popgen
 
+# Data setup
+The data set is too large to evaluate on KITT, so I will run the initial SNP calling on an HPC.  The code below is a way to download data from the SRA and rename for dDocent.  First thing is to download the metadata for all of the sequences we want using the BioProject for the paper.  The meta data comes from [https://www.ncbi.nlm.nih.gov/bioproject/PRJNA504598/](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA504598/).  Click on SRA experiments and then "Send to Run Selector and then download it.  I have placed in `BIO_594_2023/Final_Project/input`.  The full file is `SraRunTable.txt` but I made a much simpler csv file `SraRunTable.csv` to work with
+
+Next we need the SRA-toolkit, save the environment, and reload from the file for reproducibility
+
+```{bash eval= F}
+/home/zdellaert/repos/BIO_594_2023/Final_Project
+mamba create --name sra --file ./environ/sra.txt
+```
+
+Now we can download the files
+```{bash eval =F}
+source activate sra
+mkdir snp_filter
+cd snp_filter
+for i in `cut -f 1 -d "," ../input/SraRunTable.csv | grep -v Run`;
+do
+fasterq-dump $i -p -e 16 --qual-defline "+"
+gzip ${i}_1.fastq
+gzip ${i}_2.fastq
+done
+```
+
+```{bash eval = F}
+NAMES=( `cut -f2  -d "," ../input/SraRunTable.csv | grep -v Library `)
+NAMES2=( `cut -f1 -d "," ../input/SraRunTable.csv | grep -v Run`)
+LEN=( `grep -v Run ../input/SraRunTable.csv | wc -l `)
+LEN=$(($LEN - 1))
+
+for ((i = 0; i <= $LEN; i++));
+do
+mv ${NAMES2[$i]}_1.fastq.gz ${NAMES[$i]}.F.fq.gz
+mv ${NAMES2[$i]}_2.fastq.gz ${NAMES[$i]}.R.fq.gz
+done
+
+```
+
+# SNP Filtering
