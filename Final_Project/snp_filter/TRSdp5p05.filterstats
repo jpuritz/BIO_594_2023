@@ -1,0 +1,52 @@
+Number of sites filtered based on allele balance at heterozygous loci, locus quality, and mapping quality / Depth
+ 0 of 405 
+
+Number of additional sites filtered based on properly paired status
+ 0 of 405 
+
+Number of sites filtered based on high depth and lower than 2*DEPTH quality score
+ 66 of 405 
+
+
+                                            Histogram of mean depth per site
+
+  12 +++----+----+-----+----+-----+----+-----+----+-----+----+-----+----+----+-----+----+-----+----+-----+----+----++
+     | +    +    +     +    +     +    +     +    +     +  'meandepthpersite' using (bin($1,binwidth)):(1.0) ****** +
+     |                                                                                **                            |
+     |                                                                                **                            |
+  10 ++                                                                               **                           ++
+     |                                                                                **                            |
+     |                                                                                **  *                         |
+     |                                                                                **  *                         |
+   8 ++                                                                          **   **  *      *                 ++
+     |                                                                           **   **  *      *                  |
+     |                                                                           **   *** *      *                  |
+   6 ++                                                                    *     *** **** *      **   * *          ++
+     |                                                                     *     *** **** *      **   * *           |
+     |                                                                     *     *** **** *** *  ** *****           |
+     |                                                                     *     *** **** *** *  ** *****           |
+   4 ++                                                           * **    **  ** *** ************** ***** *   **   ++
+     |                                                            * **    **  ** *** ************** ***** *   **    |
+     |                                                        * *** ************************************* *   **    |
+     |                                                        * *** ************************************* *   **    |
+   2 ++                                                   *************************************************** **   ++
+     |                                                    *************************************************** **    |
+     |                                             ******************************************************************
+     | +    +    +     +    +     +    +     +    +* *  * ******************************************************* * *
+   0 +++----+----+-----+----+-----+----+-----+----+******************************************************************
+       14   28   42    56   70    84   98   112  126   140  154   168  182  196   210  224   238  252   266  280   294
+                                                       Mean Depth
+
+Maximum mean depth cutoff is 294
+Number of sites filtered based on maximum mean depth
+ 10 of 405 
+
+Number of sites filtered based on within locus depth mismatch
+ 0 of 337 
+
+Total number of sites filtered
+ 68 of 405 
+
+Remaining sites
+ 337 
+
