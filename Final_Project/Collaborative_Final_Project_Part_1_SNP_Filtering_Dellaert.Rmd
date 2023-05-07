@@ -18,41 +18,250 @@ This means that all files and directories should match.  This will help when one
 
 # Link to original github: https://github.com/pdimens/2022-Tatlanticus_popgen
 
-# Data setup
-The data set is too large to evaluate on KITT, so I will run the initial SNP calling on an HPC.  The code below is a way to download data from the SRA and rename for dDocent.  First thing is to download the metadata for all of the sequences we want using the BioProject for the paper.  The meta data comes from [https://www.ncbi.nlm.nih.gov/bioproject/PRJNA504598/](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA504598/).  Click on SRA experiments and then "Send to Run Selector and then download it.  I have placed in `BIO_594_2023/Final_Project/input`.  The full file is `SraRunTable.txt` but I made a much simpler csv file `SraRunTable.csv` to work with
+## SNP Filtering
 
-Next we need the SRA-toolkit, save the environment, and reload from the file for reproducibility
-
-```{bash eval= F}
-/home/zdellaert/repos/BIO_594_2023/Final_Project
-mamba create --name sra --file ./environ/sra.txt
-```
-
-Now we can download the files
-```{bash eval =F}
-source activate sra
+The dataset is HUGE. Instead of downloading all of the files and starting with ddocent, I am starting from the BFT.filtered.vcf.gz file.
+```bash
+cd /home/zdellaert/repos/BIO_594_2023/Final_Project
 mkdir snp_filter
 cd snp_filter
-for i in `cut -f 1 -d "," ../input/SraRunTable.csv | grep -v Run`;
-do
-fasterq-dump $i -p -e 16 --qual-defline "+"
-gzip ${i}_1.fastq
-gzip ${i}_2.fastq
-done
+cp ../inputfiles/BFT.filtered.vcf.gz .
+gunzip BFT.filtered.vcf.gz
 ```
 
-```{bash eval = F}
-NAMES=( `cut -f2  -d "," ../input/SraRunTable.csv | grep -v Library `)
-NAMES2=( `cut -f1 -d "," ../input/SraRunTable.csv | grep -v Run`)
-LEN=( `grep -v Run ../input/SraRunTable.csv | wc -l `)
-LEN=$(($LEN - 1))
+### Use VCF tools to begin process of SNP filtering.
 
-for ((i = 0; i <= $LEN; i++));
-do
-mv ${NAMES2[$i]}_1.fastq.gz ${NAMES[$i]}.F.fq.gz
-mv ${NAMES2[$i]}_2.fastq.gz ${NAMES[$i]}.R.fq.gz
-done
+Parameter explanation:
+--max-missing 0.5: filter genotypes called below 50% (across all individuals)
+
+--maf 0.001: Include  only  sites  with  a  Minor  Allele Frequency greater than or equal to 0.001
+
+--minQ 20: Includes only sites with Quality value above this threshold (20).
+
+--recode: write a new vcf file with the filters
+
+--recode-INFO-all: keeps all the INFO flags from the old vcf file in the new one.
+
+--out designates the name of the output"
 
 ```
+vcftools --vcf BFT.filtered.vcf --max-missing 0.5 --maf 0.001 --minQ 20 --recode --recode-INFO-all --out TRS
+```
 
-# SNP Filtering
+Output:
+
+VCFtools - 0.1.17
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf BFT.filtered.vcf
+	--recode-INFO-all
+	--maf 0.001
+	--minQ 20
+	--max-missing 0.5
+	--out TRS
+	--recode
+
+**After filtering, kept 334 out of 334 Individuals**
+Outputting VCF file...
+
+**After filtering, kept 2139 out of a possible 2139 Sites**
+Run Time = 3.00 seconds
+
+### Continue with filtering:
+
+Recode genotypes that have less than 5 reads
+
+```
+vcftools --vcf TRS.recode.vcf --minDP 5 --recode --recode-INFO-all --out TRSdp5
+```
+
+Output:
+
+VCFtools - 0.1.17
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf TRS.recode.vcf
+	--recode-INFO-all
+	--minDP 5
+	--out TRSdp5
+	--recode
+
+**After filtering, kept 334 out of 334 Individuals**
+Outputting VCF file...
+**After filtering, kept 2139 out of a possible 2139 Sites**
+Run Time = 3.00 seconds
+
+## Run pop_missing_filter.sh
+```
+pop_missing_filter.sh TRSdp5.recode.vcf ../inputfiles/bft.popmap 0.05 1 TRSdp5p05
+```
+
+Output (cut out warnings)
+
+Parameters as interpreted:
+	--vcf TRSdp5.recode.vcf
+	--keep keep.BRZ
+	--out BRZ
+	--missing-site
+
+Keeping individuals in 'keep' list
+After filtering, kept 23 out of 334 Individuals
+Outputting Site Missingness
+After filtering, kept 2139 out of a possible 2139 Sites
+Run Time = 1.00 seconds
+
+Parameters as interpreted:
+	--vcf TRSdp5.recode.vcf
+	--keep keep.BRZSP
+	--out BRZSP
+	--missing-site
+
+ Keeping individuals in 'keep' list
+After filtering, kept 14 out of 334 Individuals
+Outputting Site Missingness
+After filtering, kept 2139 out of a possible 2139 Sites
+Run Time = 0.00 seconds
+
+and so on for each population: (BRZ, BRZSP, KEY, MRT, PNS, PR, SCA, TX, and VZ)
+
+Command:
+```
+dDocent_filters TRSdp5p05.recode.vcf TRSdp5p05
+```
+
+Number of sites filtered based on allele balance at heterozygous loci, locus quality, and mapping quality / Depth
+ 0 of 405
+
+Are reads expected to overlap?  In other words, is fragment size less than 2X the read length?  Enter yes or no.
+**yes**
+
+Is this from a mixture of SE and PE libraries? Enter yes or no.
+no
+Number of additional sites filtered based on properly paired status
+ 0 of 405
+
+Number of sites filtered based on high depth and lower than 2*DEPTH quality score
+ 66 of 405
+
+                                             Histogram of mean depth per site
+
+  12 +++----+----+-----+----+-----+----+-----+----+-----+----+-----+----+----+-----+----+-----+----+-----+----+----++
+     | +    +    +     +    +     +    +     +    +     +  'meandepthpersite' using (bin($1,binwidth)):(1.0) ****** +
+     |                                                                                **                            |
+     |                                                                                **                            |
+  10 ++                                                                               **                           ++
+     |                                                                                **                            |
+     |                                                                                **  *                         |
+     |                                                                                **  *                         |
+   8 ++                                                                          **   **  *      *                 ++
+     |                                                                           **   **  *      *                  |
+     |                                                                           **   *** *      *                  |
+   6 ++                                                                    *     *** **** *      **   * *          ++
+     |                                                                     *     *** **** *      **   * *           |
+     |                                                                     *     *** **** *** *  ** *****           |
+     |                                                                     *     *** **** *** *  ** *****           |
+   4 ++                                                           * **    **  ** *** ************** ***** *   **   ++
+     |                                                            * **    **  ** *** ************** ***** *   **    |
+     |                                                        * *** ************************************* *   **    |
+     |                                                        * *** ************************************* *   **    |
+   2 ++                                                   *************************************************** **   ++
+     |                                                    *************************************************** **    |
+     |                                             ******************************************************************
+     | +    +    +     +    +     +    +     +    +* *  * ******************************************************* * *
+   0 +++----+----+-----+----+-----+----+-----+----+******************************************************************
+       14   28   42    56   70    84   98   112  126   140  154   168  182  196   210  224   238  252   266  280   294
+                                                       Mean Depth
+
+
+If distrubtion looks normal, a 1.645 sigma cutoff (~90% of the data) would be 93280.828
+The 95% cutoff would be 269
+Would you like to use a different maximum mean depth cutoff than 269, yes or no
+**yes**
+Please enter new cutoff
+**294**
+Number of sites filtered based on maximum mean depth
+ 10 of 405
+
+Number of sites filtered based on within locus depth mismatch
+ 0 of 337
+
+Total number of sites filtered
+ 68 of 405
+
+Remaining sites
+ 337
+
+Filtered VCF file is called Output_prefix.FIL.recode.vcf
+
+Filter stats stored in TRSdp5p05.filterstats
+
+Commands:
+```
+vcfallelicprimitives -k TRSdp5p05.FIL.recode.vcf |sed 's:\.|\.:\.\/\.:g' > TRSdp5p05F.prim
+```
+
+Commands:
+```
+vcftools --vcf TRSdp5p05F.prim --recode --recode-INFO-all --remove-indels --out SNP.TRSdp5p05F
+```
+
+Output:
+
+Parameters as interpreted:
+	--vcf TRSdp5p05F.prim
+	--recode-INFO-all
+	--out SNP.TRSdp5p05F
+	--recode
+	--remove-indels
+
+After filtering, kept 334 out of 334 Individuals
+Outputting VCF file...
+After filtering, kept 337 out of a possible 337 Sites
+Run Time = 1.00 seconds
+
+Command:
+```
+filter_hwe_by_pop.pl -v SNP.TRSdp5p05F.recode.vcf -p ../inputfiles/bft.popmap -c 0.5 -out SNP.TRSdp5p05FHWE
+```
+
+Output:
+
+Processing population: BRZ (23 inds)
+Processing population: BRZSP (14 inds)
+Processing population: KEY (55 inds)
+Processing population: MRT (40 inds)
+Processing population: PNS (30 inds)
+Processing population: PR (38 inds)
+Processing population: SCA (51 inds)
+Processing population: TX (28 inds)
+Processing population: VZ (45 inds)
+Outputting results of HWE test for filtered loci to 'filtered.hwe'
+Kept 337 of a possible 337 loci (filtered 0 loci)
+
+Command:
+```
+vcftools --vcf SNP.TRSdp5p05FHWE.recode.vcf --maf 0.05 --recode --recode-INFO-all --out SNP.TRSdp5p05FHWEmaf05
+```
+
+Output:
+
+Parameters as interpreted:
+	--vcf SNP.TRSdp5p05FHWE.recode.vcf
+	--recode-INFO-all
+	--maf 0.05
+	--out SNP.TRSdp5p05FHWEmaf05
+	--recode
+
+
+After filtering, kept 334 out of 334 Individuals
+Outputting VCF file...
+After filtering, kept 94 out of a possible 337 Sites
+Run Time = 0.00 seconds
+
+```
+mv SNP.TRSdp5p05FHWEmaf05.recode.vcf SNP_FilteredZD.recode.vcf
+``
+
+**FINAL FILTERED VCF FILE: SNP_FilteredZD.recode.vcf**
