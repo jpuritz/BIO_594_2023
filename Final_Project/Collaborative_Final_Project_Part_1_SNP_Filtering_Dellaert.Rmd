@@ -21,7 +21,8 @@ This means that all files and directories should match.  This will help when one
 ## SNP Filtering
 
 The dataset is HUGE. Instead of downloading all of the files and starting with ddocent, I am starting from the BFT.filtered.vcf.gz file.
-```bash
+
+```{bash}
 cd /home/zdellaert/repos/BIO_594_2023/Final_Project
 mkdir snp_filter
 cd snp_filter
@@ -44,7 +45,7 @@ Parameter explanation:
 
 --out designates the name of the output"
 
-```
+```{bash}
 vcftools --vcf BFT.filtered.vcf --max-missing 0.5 --maf 0.001 --minQ 20 --recode --recode-INFO-all --out TRS
 ```
 
@@ -68,11 +69,9 @@ Outputting VCF file...
 **After filtering, kept 2139 out of a possible 2139 Sites**
 Run Time = 3.00 seconds
 
-### Continue with filtering:
+### Recode genotypes that have less than 5 reads
 
-Recode genotypes that have less than 5 reads
-
-```
+```{bash}
 vcftools --vcf TRS.recode.vcf --minDP 5 --recode --recode-INFO-all --out TRSdp5
 ```
 
@@ -93,8 +92,9 @@ Outputting VCF file...
 **After filtering, kept 2139 out of a possible 2139 Sites**
 Run Time = 3.00 seconds
 
-## Run pop_missing_filter.sh
-```
+### Run pop_missing_filter.sh to determine missingness for each population and remove missing loci (breaks into population)
+
+```{bash}
 pop_missing_filter.sh TRSdp5.recode.vcf ../inputfiles/bft.popmap 0.05 1 TRSdp5p05
 ```
 
@@ -126,8 +126,13 @@ Run Time = 0.00 seconds
 
 and so on for each population: (BRZ, BRZSP, KEY, MRT, PNS, PR, SCA, TX, and VZ)
 
-Command:
-```
+### Run dDocent_filters 
+
+"This script will automatically filter a FreeBayes generated VCF file using criteria related to site depth,
+ quality versus depth, strand representation, allelic balance at heterzygous individuals, and paired read representation.
+ The script assumes that loci and individuals with low call rates (or depth) have already been removed."
+
+```{bash}
 dDocent_filters TRSdp5p05.recode.vcf TRSdp5p05
 ```
 
@@ -197,13 +202,21 @@ Filtered VCF file is called Output_prefix.FIL.recode.vcf
 
 Filter stats stored in TRSdp5p05.filterstats
 
-Commands:
-```
+###  Filter by HWE to remove erroneous variant calls, applied by population.
+
+#### vcfallelicprimitives
+
+Convert  variant calls to SNPs using vcfallelicprimatives
+
+```{bash}
 vcfallelicprimitives -k TRSdp5p05.FIL.recode.vcf |sed 's:\.|\.:\.\/\.:g' > TRSdp5p05F.prim
 ```
 
-Commands:
-```
+#### Remove indels
+
+Then feed this to VCFtools to remove indels.
+
+```{bash}
 vcftools --vcf TRSdp5p05F.prim --recode --recode-INFO-all --remove-indels --out SNP.TRSdp5p05F
 ```
 
@@ -221,8 +234,8 @@ Outputting VCF file...
 After filtering, kept 337 out of a possible 337 Sites
 Run Time = 1.00 seconds
 
-Command:
-```
+#### filter_hwe_by_pop.pl: The filtering script for filtering by HWE
+```{bash}
 filter_hwe_by_pop.pl -v SNP.TRSdp5p05F.recode.vcf -p ../inputfiles/bft.popmap -c 0.5 -out SNP.TRSdp5p05FHWE
 ```
 
@@ -240,28 +253,6 @@ Processing population: VZ (45 inds)
 Outputting results of HWE test for filtered loci to 'filtered.hwe'
 Kept 337 of a possible 337 loci (filtered 0 loci)
 
-Command:
-```
-vcftools --vcf SNP.TRSdp5p05FHWE.recode.vcf --maf 0.05 --recode --recode-INFO-all --out SNP.TRSdp5p05FHWEmaf05
-```
 
-Output:
+# **FINAL FILTERED VCF FILE: SNP.TRSdp5p05FHWE.recode.vcf** 
 
-Parameters as interpreted:
-	--vcf SNP.TRSdp5p05FHWE.recode.vcf
-	--recode-INFO-all
-	--maf 0.05
-	--out SNP.TRSdp5p05FHWEmaf05
-	--recode
-
-
-After filtering, kept 334 out of 334 Individuals
-Outputting VCF file...
-After filtering, kept 94 out of a possible 337 Sites
-Run Time = 0.00 seconds
-
-```
-mv SNP.TRSdp5p05FHWEmaf05.recode.vcf SNP_FilteredZD.recode.vcf
-``
-
-**FINAL FILTERED VCF FILE: SNP_FilteredZD.recode.vcf**
