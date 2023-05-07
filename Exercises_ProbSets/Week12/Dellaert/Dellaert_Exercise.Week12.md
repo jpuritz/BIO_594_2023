@@ -434,6 +434,7 @@ scatter(dapc2,col=col,bg="white", solid=1)
 contrib <- loadingplot(dapc2$var.contr, axis=1, thres=.05, lab.jitter=1)
 ```
 
+
 ```R
 #Structure Like
 
@@ -504,20 +505,233 @@ Rstudio
 
 ```R
 setwd("~/Week12/real_data")
-source("plot_R.r")
+source("../plot_R.r")
 plot_bayescan("BS_input_fst.txt")
 ```
 
-Bayesscan found 5 outliers: 
-
-[1] 179 307 308 671 672
+Bayesscan found no outliers.
 
 
-![BayesScan.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/BayesScan.png?raw=true)
+![BayesScan.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/BayesScan.png?raw=true)
 
 ## Run BayEnv
 
+First, convert vcf to BayEnv input
+
+```bash
+PGDSpider2-cli -inputfile SNP.DP3g98maf01_85INDoutFIL.NO2a.HWE.FIL.recode.vcf -outputfile SNP.BayEnv.txt -spid SNPBayEnv.spid
+```
+
+output: SNP.BayEnv.txt
+
+Run BayEnv to generate the covariance matrix
+
+
+determine number of populations
+
+`cut popmap -f 2 | uniq | wc -l`
+
+16 populations 
+
+`bayenv2 -i SNP.BayEnv.txt -p 16 -k 100000 -r 63479 > matrix.out`
+
+This code generates 100,000 iterations.  We only need the last one.
+
+`tail -17 matrix.out | head -16 > matrix`
+
+With the matrix we will use our environmental factor file:
+
+`cat environ`
+
+Next, we calculate the Bayes Factor for each SNP for each environmental variable:
+
+```
+ln -s /usr/local/bin/bayenv2 .
+calc_bf.sh SNP.BayEnv.txt environ matrix 16 10000 2
+```
+
+Next, we convert the output into something suitable to input into R
+
+```
+cat bf_environ.environ | wc -l
+```
+
+7302 lines
+
+```
+paste <(seq 1 7302) <(cut -f2,3 bf_environ.environ ) > bayenv.out
+cat <(echo -e "Locus\tBF1\tBF2") bayenv.out > bayenv.final
+```
+
+In R:
+
+```R
+setwd("~/Week12/real_data")
+table_bay <- read.table("bayenv.final",header=TRUE)
+plot(table_bay$BF1)
+
+table_bay[which(table_bay$BF1 > 100),]
+```
+
+No outliers.
+
+Instead of making a new VCF file with only neutral SNPs, I am continuing on with the original filtered VCF file above since both BayEnv and BayesScan did not detect any outliers. Keeping 7302/7302 SNPs.
+
 ## Run at least one PCA and one DAPC using outlier free data set
+
+In R:
+
+```R
+setwd("~/Week12/real_data")
+library(adegenet)
+library(vcfR)
+
+my_vcf <- read.vcfR("SNP.DP3g98maf01_85INDoutFIL.NO2a.HWE.FIL.recode.vcf")
+```
+
+Scanning file to determine attributes.
+File attributes:
+  meta lines: 64
+  header_line: 65
+  variant count: 7303
+  column count: 393
+Meta line 64 read in.
+All meta lines processed.
+gt matrix initialized.
+Character matrix gt created.
+  Character matrix gt rows: 7303
+  Character matrix gt cols: 393
+  skip: 0
+  nrows: 7303
+  row_num: 0
+Processed variant: 7303
+All variants processed
+
+```R
+my_genind <- vcfR2genind(my_vcf)
+
+strata<- read.table("LibraryInfo", header=TRUE)
+strata_df <- data.frame(strata)
+strata(my_genind) <- strata_df
+
+setPop(my_genind) <- ~Population
+
+#Test Population Structure
+library("hierfstat")
+fstatic <- genind2hierfstat(my_genind)
+
+matFst <- pairwise.neifst(fstatic)
+
+#PCA
+
+X <- tab(my_genind, freq = TRUE, NA.method = "mean")
+
+pca1 <- dudi.pca(X, scale = FALSE, scannf = FALSE, nf = 3)
+barplot(pca1$eig[1:50], main = "PCA eigenvalues", col = heat.colors(50))
+s.class(pca1$li, pop(my_genind))
+title("PCA of real dataset axes 1-2")
+add.scatter.eig(pca1$eig[1:20], 3,1,2)
+
+col <- funky(15)
+s.class(pca1$li, pop(my_genind),xax=1,yax=2, col=col, axesell=FALSE, cstar=0, cpoint=3, grid=FALSE)
+```
+
+![PopStruct_2.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_2.png?raw=true)
+
+```R
+#DAPC
+
+grp <- find.clusters(my_genind, max.n.clust=40)
+```
+
+retained 300 PCs and 3 clusters
+
+```R
+table(pop(my_genind), grp$grp)
+
+table.value(table(pop(my_genind), grp$grp), col.lab=paste("inf", 1:3), row.lab=paste("ori", 1:16))
+
+dapc1 <- dapc(my_genind, grp$grp)
+```
+
+retained 300 PCs and 2 discriminant functions 
+
+```R
+scatter(dapc1,col=col,bg="white", solid=1)
+
+contrib <- loadingplot(dapc1$var.contr, axis=1, thres=.01, lab.jitter=1)
+contrib
+```
+
+![PopStruct_4.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_4.png?raw=true)
+
+![PopStruct_5.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_5.png?raw=true)
+
+```R
+#Structure Like
+
+compoplot(dapc1, posi="bottomright",txt.leg=paste("Cluster", 1:3), lab="", ncol=1, xlab="individuals")
+```
+
+![PopStruct_9.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_9.png?raw=true)
+
+5 clusters:
+
+```R
+#DAPC
+
+grp <- find.clusters(my_genind, max.n.clust=40)
+```
+
+retained 300 PCs and 5 clusters
+
+```R
+setPop(my_genind) <- ~Population
+table(pop(my_genind), grp$grp)
+
+table.value(table(pop(my_genind), grp$grp), col.lab=paste("inf", 1:5), row.lab=paste("ori", 1:16))
+
+dapc1 <- dapc(my_genind, grp$grp)
+```
+
+retained 300 PCs and 4 discriminant functions 
+
+```R
+scatter(dapc1,col=col,bg="white", solid=1)
+
+contrib <- loadingplot(dapc1$var.contr, axis=1, thres=.01, lab.jitter=1)
+contrib
+```
+
+![PopStruct_10.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_10.png?raw=true)
+
+![PopStruct_11.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_11.png?raw=true)
+
+```R
+#Structure Like
+
+compoplot(dapc1, posi="bottomright",txt.leg=paste("Cluster", 1:5), lab="", ncol=1, xlab="individuals")
+```
+
+![PopStruct_12.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_12.png?raw=true)
+
+``R
+setPop(my_genind) <- ~Library
+
+dapc2 <- dapc(my_genind, pop(my_genind))
+```
+
+retained 300 PCs and 2  discriminant functions 
+
+```R
+scatter(dapc2,col=col,bg="white", solid=1)
+
+contrib <- loadingplot(dapc2$var.contr, axis=1, thres=.05, lab.jitter=1)
+
+```
+![PopStruct_7.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_7.png?raw=true)
+
+
 
 ## Perform at least two analyses from Silliman et al	
 
