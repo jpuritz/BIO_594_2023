@@ -22,7 +22,7 @@ This means that all files and directories should match.  This will help when one
 
 The dataset is HUGE. Instead of downloading all of the files and starting with ddocent, I am starting from the BFT.filtered.vcf.gz file.
 
-```{bash}
+```{bash eval=FALSE}
 cd /home/zdellaert/repos/BIO_594_2023/Final_Project
 mkdir snp_filter
 cd snp_filter
@@ -45,7 +45,7 @@ Parameter explanation:
 
 --out designates the name of the output"
 
-```{bash}
+```{bash eval=FALSE}
 vcftools --vcf BFT.filtered.vcf --max-missing 0.5 --maf 0.001 --minQ 20 --recode --recode-INFO-all --out TRS
 ```
 
@@ -71,7 +71,7 @@ Run Time = 3.00 seconds
 
 ### Recode genotypes that have less than 5 reads
 
-```{bash}
+```{bash eval=FALSE}
 vcftools --vcf TRS.recode.vcf --minDP 5 --recode --recode-INFO-all --out TRSdp5
 ```
 
@@ -94,7 +94,7 @@ Run Time = 3.00 seconds
 
 ### Run pop_missing_filter.sh to determine missingness for each population and remove missing loci (breaks into population)
 
-```{bash}
+```{bash eval=FALSE}
 pop_missing_filter.sh TRSdp5.recode.vcf ../inputfiles/bft.popmap 0.05 1 TRSdp5p05
 ```
 
@@ -132,7 +132,7 @@ and so on for each population: (BRZ, BRZSP, KEY, MRT, PNS, PR, SCA, TX, and VZ)
  quality versus depth, strand representation, allelic balance at heterzygous individuals, and paired read representation.
  The script assumes that loci and individuals with low call rates (or depth) have already been removed."
 
-```{bash}
+```{bash eval=FALSE}
 dDocent_filters TRSdp5p05.recode.vcf TRSdp5p05
 ```
 
@@ -208,7 +208,7 @@ Filter stats stored in TRSdp5p05.filterstats
 
 Convert  variant calls to SNPs using vcfallelicprimatives
 
-```{bash}
+```{bash eval=FALSE}
 vcfallelicprimitives -k TRSdp5p05.FIL.recode.vcf |sed 's:\.|\.:\.\/\.:g' > TRSdp5p05F.prim
 ```
 
@@ -216,7 +216,7 @@ vcfallelicprimitives -k TRSdp5p05.FIL.recode.vcf |sed 's:\.|\.:\.\/\.:g' > TRSdp
 
 Then feed this to VCFtools to remove indels.
 
-```{bash}
+```{bash eval=FALSE}
 vcftools --vcf TRSdp5p05F.prim --recode --recode-INFO-all --remove-indels --out SNP.TRSdp5p05F
 ```
 
@@ -235,7 +235,7 @@ After filtering, kept 337 out of a possible 337 Sites
 Run Time = 1.00 seconds
 
 #### filter_hwe_by_pop.pl: The filtering script for filtering by HWE
-```{bash}
+```{bash eval=FALSE}
 filter_hwe_by_pop.pl -v SNP.TRSdp5p05F.recode.vcf -p ../inputfiles/bft.popmap -c 0.5 -out SNP.TRSdp5p05FHWE
 ```
 
