@@ -342,6 +342,151 @@ After filtering, kept 963 out of a possible 974 Sites.
 
 Yay, the 11 outliers were successfully removed.
 
+From now on we will work with the file "neutralloci.recode.vcf"
+
 ## Run at least one PCA and one DAPC with the neutral data
 
+Get strata (LibraryInfo) and dist.mat files:
+
+```
+cp /home/BIO594/Exercises/Week_12/simulated/LibraryInfo .
+
+cp /home/BIO594/DATA/Week8/dist.mat .
+```
+
+In R:
+
+```R
+setwd("~/Week12")
+library(adegenet)
+library(vcfR)
+
+
+my_vcf <- read.vcfR("neutralloci.recode.vcf")
+
+
+my_genind <- vcfR2genind(my_vcf)
+
+strata<- read.table("LibraryInfo", header=TRUE)
+strata_df <- data.frame(strata)
+strata(my_genind) <- strata_df
+
+setPop(my_genind) <- ~Population
+
+#Test Population Structure
+library("hierfstat")
+#fstat(my_genind)
+fstatic <- genind2hierfstat(my_genind)
+
+#matFst <- pairwise.fst(my_genind)
+
+matFst <- pairwise.neifst(fstatic)
+matFst_WC <- pairwise.WCfst(fstatic)
+```
+
+Both pairwise tests gave the same result, so I will continue on with the result "matFst" using the Nei version.
+
+```R
+#PCA
+
+X <- tab(my_genind, freq = TRUE, NA.method = "mean")
+
+pca1 <- dudi.pca(X, scale = FALSE, scannf = FALSE, nf = 3)
+barplot(pca1$eig[1:50], main = "PCA eigenvalues", col = heat.colors(50))
+s.class(pca1$li, pop(my_genind))
+title("PCA of simulated dataset\naxes 1-2")
+add.scatter.eig(pca1$eig[1:20], 3,1,2)
+
+col <- funky(15)
+s.class(pca1$li, pop(my_genind),xax=1,yax=2, col=col, axesell=FALSE, cstar=0, cpoint=3, grid=FALSE)
+```
+
+![PopStruct_2.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_2.png?raw=true)
+
+
+```R
+# Isolation by distance
+my_vcf <- read.vcfR("neutralloci.recode.vcf")
+
+my_genind <- vcfR2genind(my_vcf)
+
+strata<- read.table("LibraryInfo", header=TRUE)
+strata_df <- data.frame(strata)
+strata(my_genind) <- strata_df
+
+setPop(my_genind) <- ~Population
+
+xy <-read.table("dist.mat")
+xy
+my_genind@other$xy <- xy
+
+toto <- genind2genpop(my_genind)
+Dgeo <- dist(my_genind$other$xy)
+Dgen <- dist.genpop(toto,method=2)
+ibd <- mantel.randtest(Dgen,Dgeo)
+
+plot(ibd)
+plot(Dgeo, Dgen)
+abline(lm(Dgen~Dgeo), col="red",lty=2)
+```
+
+```R
+#DAPC
+
+grp <- find.clusters(my_genind, max.n.clust=40)
+```
+
+retained 2 PCs and 6 clusters
+
+```R
+table(pop(my_genind), grp$grp)
+
+table.value(table(pop(my_genind), grp$grp), col.lab=paste("inf", 1:2), row.lab=paste("ori", 1:4))
+
+dapc1 <- dapc(my_genind, grp$grp)
+```
+
+retained 2 PCs and 2  discriminant functions 
+
+```R
+scatter(dapc1,col=col,bg="white", solid=1)
+
+contrib <- loadingplot(dapc1$var.contr, axis=1, thres=.01, lab.jitter=1)
+contrib
+```
+
+![PopStruct_4.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_4.png?raw=true)
+
+![PopStruct_5.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_5.png?raw=true)
+
+``R
+setPop(my_genind) <- ~Library
+
+dapc2 <- dapc(my_genind, pop(my_genind))
+```
+
+retained 2 PCs and 1  discriminant functions 
+
+```R
+scatter(dapc2,col=col,bg="white", solid=1)
+
+contrib <- loadingplot(dapc2$var.contr, axis=1, thres=.05, lab.jitter=1)
+```
+
+```R
+#Structure Like
+
+compoplot(dapc1, posi="bottomright",txt.leg=paste("Cluster", 1:6), lab="", ncol=1, xlab="individuals")
+
+temp <- which(apply(dapc1$posterior,1, function(e) all(e<0.9)))
+
+compoplot(dapc1, subset=temp, posi="bottomright", txt.leg=paste("Cluster", 1:4), ncol=2)
+```
+
+![PopStruct_9.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_9.png?raw=true)
+
+![PopStruct_10.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_10.png?raw=true)
+
 ## Perform at least two analyses from Silliman et al
+
+### Will come back to this...
