@@ -59,7 +59,7 @@ mamba activate Week12
 cd Week12
 ```
 
-* Filter the SNPs (you actually did this last week)
+## "Filter the SNPs (you actually did this last week)"
 
 ### Copying filtered SNPs from last week
 
@@ -67,7 +67,7 @@ cd Week12
 cp ../Week11/SNP.DP3g95p5maf05.HWE.recode.vcf  .
 ```
 
-* Run at least two outlier detection programs
+## "Run at least two outlier detection programs"
 
 ### Converting from VCF to other outputs
 
@@ -86,7 +86,7 @@ PGDSpider2-cli -inputfile SNP.DP3g95p5maf05.HWE.recode.vcf -outputfile BS_input 
 
 Output file is called: BS_input
 
-### Run BayeScan
+### Outlier Detection method 1: Run BayeScan
 
 ```bash
 BayeScan2.1_linux64bits BS_input -nbp 30 -thin 20
@@ -98,7 +98,8 @@ Copy source file
 cp /home/BIO594/DATA/Week7/example/plot_R.r .
 ```
 
-### Open Rstudio 
+Rstudio 
+
 ```R
 setwd("~/Week12")
 source("plot_R.r")
@@ -112,7 +113,7 @@ Bayesscan found 5 outliers:
 
 ![BayesScan.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/BayesScan.png?raw=true)
 
-## More outlier Detection
+### Outlier Detection method 2: PCAadapt
 
 For all other analyses, we need to limit SNPs to only those with two alleles:
 
@@ -121,3 +122,226 @@ vcftools --vcf SNP.DP3g95p5maf05.HWE.recode.vcf --max-alleles 2 --recode --recod
 ```
 
 Output: SNP.DP3g95p5maf05_vcftoolsOD.recode.vcf
+
+#### PCAdapt in Rstudio
+
+R code:
+```R
+#set working directory
+setwd("~/Week12")
+
+#Load pcadapt library
+library(pcadapt)
+
+#load our VCF file into R
+filename <- read.pcadapt("SNP.DP3g95p5maf05_vcftoolsOD.recode.vcf", type = "vcf" )
+```
+
+Output:
+
+100 variant(s) have been discarded as they are not SNPs.
+Summary:
+
+	- input file:				SNP.DP3g95p5maf05_vcftoolsOD.recode.vcf
+	- output file:				/tmp/RtmpPObkQ2/filea1506bf99787.pcadapt
+
+	- number of individuals detected:	80
+	- number of loci detected:		974
+
+874 lines detected.
+80 columns detected.
+
+```R
+#Create first PCA
+x <- pcadapt(input = filename, K = 20)
+
+#Plot the likelihoods
+plot(x, option = "screeplot")
+#Plot Plot the likelihoods for only first 10 K
+plot(x, option = "screeplot", K = 10)
+
+#Create population designations
+poplist.names <- c(rep("POPA", 20),rep("POPB", 20),rep("POPC", 20), rep("POPD",20))
+
+#Plot the actual PCA (first two PCAs)
+plot(x, option = "scores", pop = poplist.names)
+#Plot PCA with PCA 2 and PCA 3
+plot(x, option = "scores", i = 2, j = 3, pop = poplist.names)
+#Plot PCA with PCA 3 and PCA 4
+plot(x, option = "scores", i = 3, j = 4, pop = poplist.names)
+```
+
+running with K = 3 
+```R
+#Redo PCA with only 3 K
+x <- pcadapt(filename, K = 3)
+
+summary(x)
+
+#Start looking for outliers
+#Make Manhattan Plot
+plot(x , option = "manhattan")
+#Make qqplot
+plot(x, option = "qqplot", threshold = 0.1)
+# Look at P-value distribution
+plot(x, option = "stat.distribution")
+
+# Set FDR
+library(qvalue)
+qval <- qvalue(x$pvalues)$qvalues
+alpha <- 0.1
+
+# Save outliers
+outliers <- which(qval < alpha)
+outliers
+```
+
+Outliers: 152 & 153
+
+```R
+# Testing for library effects
+
+poplist.names <- c(rep("LIB1", 40),rep("LIB2", 40))
+x <- pcadapt(input = filename, K = 20)
+
+plot(x, option = "scores", pop = poplist.names)
+plot(x, option = "scores", i = 2, j = 3, pop = poplist.names)
+```
+
+running with K = 2 
+```R
+x <- pcadapt(filename, K = 2)
+
+summary(x)
+
+#Start looking for outliers
+#Make Manhattan Plot
+plot(x , option = "manhattan")
+
+#Make qqplot
+plot(x, option = "qqplot", threshold = 0.1)
+
+# Look at P-value distribution
+plot(x, option = "stat.distribution")
+
+# Set FDR
+library(qvalue)
+qval <- qvalue(x$pvalues)$qvalues
+alpha <- 0.1
+
+# Save outliers
+outliers <- which(qval < alpha)
+
+outliers
+```
+
+Outliers: 8, 152, 153
+
+### Outlier Detection method 3: BayEnv2
+
+First, convert vcf to BayEnv input
+
+```bash
+cp /home/BIO594/DATA/Week7/example/SNPBayEnv.spid .
+cp /home/BIO594/DATA/Week7/example/environ .
+PGDSpider2-cli -inputfile SNP.DP3g95p5maf05_vcftoolsOD.recode.vcf -outputfile SNP.BayEnv.txt -spid SNPBayEnv.spid
+```
+
+output: SNP.BayEnv.txt
+
+Run BayEnv to generate the covariance matrix
+
+`bayenv2 -i SNP.BayEnv.txt -p 4 -k 100000 -r 63479 > matrix.out`
+
+This code generates 100,000 iterations.  We only need the last one.
+
+`tail -5 matrix.out | head -4 > matrix`
+
+With the matrix we will use our environmental factor file:
+
+`cat environ`
+
+Next, we calculate the Bayes Factor for each SNP for each environmental variable:
+
+```
+ln -s /usr/local/bin/bayenv2 .
+calc_bf.sh SNP.BayEnv.txt environ matrix 4 10000 2
+```
+
+Next, we convert the output into something suitable to input into R
+```
+paste <(seq 1 974) <(cut -f2,3 bf_environ.environ ) > bayenv.out
+cat <(echo -e "Locus\tBF1\tBF2") bayenv.out > bayenv.final
+```
+
+In R:
+
+```R
+table_bay <- read.table("bayenv.final",header=TRUE)
+plot(table_bay$BF1)
+
+table_bay[which(table_bay$BF1 > 100),]
+```
+
+  Locus    BF1     BF2
+305   305 172.59 0.47304
+667   667 477.73 0.63856
+668   668 563.73 1.67150
+
+####  PCAadapt, BayeScan, and BayEnv2 summary of results.
+
+BayeScan: 179, 307, 308, 671, 672
+
+PCAadapt (K=3): 152, 153
+
+PCAadapt (K=2): 8, 152, 153
+
+BayEnv2: 305, 667, 668
+
+The programs identified very different individuals as outliers.
+
+Make file called all.outliers, with one line per outlier from the list above
+
+```bash
+nano all.outliers
+cat all.outliers
+```
+
+179
+307
+308
+671
+672
+152
+153
+8
+305
+667
+668
+
+We have 11 outliers total.
+
+Match outliers to the lines in the SNP file (based off of Amy's code [here](https://github.com/amyzyck/RADseq_Uca-rapax_2016/blob/master/Scripts/OutlierDetection/OutlierDetection_UcaRapax.md#combine-all-outlier-loci-into-one-file))
+
+```bash
+mawk '!/#/' SNP.DP3g95p5maf05_vcftoolsOD.recode.vcf | cut -f1,2 > totalloci
+NUM=(`cat totalloci | wc -l`)
+
+cat all.outliers | parallel "grep -w ^{} loci.plus.index" | cut -f2,3> outlier.loci.txt
+```
+
+## Generate a VCF file with only neutral SNPs  
+
+based on code below "Combine all outlier loci into one file" [here](https://github.com/amyzyck/RADseq_Uca-rapax_2016/blob/master/Scripts/OutlierDetection/OutlierDetection_UcaRapax.md#combine-all-outlier-loci-into-one-file)
+
+```bash
+vcftools --vcf SNP.DP3g95p5maf05_vcftoolsOD.recode.vcf --exclude-positions outlier.loci.txt --recode-INFO-all --out neutralloci --recode
+```
+
+After filtering, kept 963 out of a possible 974 Sites.
+
+Yay, the 11 outliers were successfully removed.
+
+## Run at least one PCA and one DAPC with the neutral data
+
+## Perform at least two analyses from Silliman et al
