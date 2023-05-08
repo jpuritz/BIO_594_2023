@@ -3,7 +3,7 @@ title: "Final Project for BIO 594 2023"
 output: github_document
 author: "Keegan Hart"
 ---
-
+# Jon's Additions
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -16,5 +16,117 @@ This is an R Markdown format used for publishing markdown documents to GitHub. W
 We are breaking up the final project into multiple `.Rmd` files, but they will be combined and knitted together at the end.  Please keep the naming convention that is in the original [repo](https://github.com/pdimens/2022-Tatlanticus_popgen).
 This means that all files and directories should match.  This will help when one section depends on data from another.
 
-# AMOVA 
+# Keegan's Additions
+
+## Final Project Description
+This project was performed using the git hub page: https://github.com/pdimens/2022-Tatlanticus_popgen
+
+I specifically was assigned to perform the AMOVA which stands for analysis of molecular variance and is used to detect population differentiation utilizing molecular markers. The entire AMOVA analysis was performed using the code provided in the amova.ipynb document in the amova folder of the 2022-Tatlanticus_popgen Git Hub provided by Pavel V. Dimens.
+
+All of the code that you see in this document was run in RStudio through this R markdown file or through the terminal function of R studio accessed through http://kitt.uri.edu:8787.
+
+## Create folder for Final Project within khart directory
+```{bash eval = FALSE}
+cd repo
+mkdir Final_Project
+cd Final_Project
+```
+## Add 2022-Tatlanticus_popgen directory to Final_Project
+```{bash eval = FALSE}
+git clone https://github.com/pdimens/2022-Tatlanticus_popgen.git
+cd 2022-Tatlanticus_popgen
+```
+
+## Create R Project within 2022-Tatlanticus_popgen
+To do this you navigate to File at the top left corner of the RStudio window. Select New Project and choose from Existing Directory you then can write out which directory you want the Project in which in this case was ~/repo/Final_Project/2022-Tatlanticus_popgen. I wanted the project to be within the 2022-Tatlanticus_popgen folder so that I could easily use the files within the inputfiles directory. 
+
+## Create R Markdown File
+To do this you select File at the top left corner of the RStudio window. Select New File and choose R Markdown. I then gave the file the name Collaborative_Final_Project_Part_7_Amova_Hart to match the name of the file in our class GitHub. I then copied all of the contents of my R Markdown on our class GitHub to the document with the same name in the 2022-Tatlanticus_popgen directory. 
+
+Confirm R Markdown is within correct working directory
+```{r}
+getwd()
+```
+
+# AMOVA
+
+## Load packages and input files
+I did not have the required packages installed so I needed to take an additional step at the beginning to install the packages. 
+```{r}
+#install.packages(adegenet)
+#install.packages(poppr)
+library(adegenet)
+library(poppr)
+set.seed(6969)
+```
+
+```{r}
+infile <- "inputfiles/bft.kinless.gen"
+bft <- read.genepop(infile, ncode = 3L, quiet = T)
+metadata <- read.csv("inputfiles/bft.strata", sep = ",", header = T)
+names(metadata) <- c("name", "year","ignore1", "ignore2","region","locality", "lat", "long")
+```
+
+Add the proper strata into the @other slot in the Genind
+```{r}
+strata(bft) <- metadata[,c(-3, -4, -7, -8)]
+head(strata(bft))
+```
+
+# Generate Genetic distances
+```{r}
+gen.dist <- dist(x = bft, method = "euclidean", diag=TRUE, upper=TRUE)
+head(gen.dist)
+```
+
+# AMOVA locality/year
+```{r}
+amv.yr.loc <- poppr.amova(bft, hier = ~locality/year, dist = gen.dist, squared = TRUE, within = FALSE, quiet = T, cutoff = 0.1)
+amv.yr.loc
+```
+
+## Test for significance
+```{r}
+signif.yr.loc <- randtest(amv.yr.loc, nrepet = 999)
+signif.yr.loc
+```
+```{r}
+plot(signif.yr.loc)
+```
+
+# AMOVA region/year 
+
+```{r}
+amv.yr.reg <- poppr.amova(bft, hier = ~region/year, dist = gen.dist, squared = TRUE, within = FALSE, quiet = T, cutoff = 0.1)
+amv.yr.reg
+```    
+
+## Test for significance
+
+```{r}
+signif.yr.reg <- randtest(amv.yr.reg, nrepet = 999)
+signif.yr.reg
+```
+```{r}
+plot(signif.yr.reg)
+```
+
+# AMOVA region/locality/year
+
+```{r}
+amv.loc.yr.reg <- poppr.amova(bft, hier = ~region/locality/year, dist = gen.dist, squared = TRUE, within = FALSE, quiet = T, cutoff = 0.1)
+amv.loc.yr.reg
+```
+
+## Test for significance
+
+```{r}
+signif.loc.yr.reg <- randtest(amv.loc.yr.reg, nrepet = 999)
+signif.loc.yr.reg
+```
+
+```{r}
+plot(signif.loc.yr.reg)
+```
+
 
