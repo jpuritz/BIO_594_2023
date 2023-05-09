@@ -676,7 +676,7 @@ contrib
 compoplot(dapc1, posi="bottomright",txt.leg=paste("Cluster", 1:3), lab="", ncol=1, xlab="individuals")
 ```
 
-![PopStruct_9.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_9.png?raw=true)
+![PopStruct_9.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_9.png?raw=true)
 
 #### 5 clusters:
 
