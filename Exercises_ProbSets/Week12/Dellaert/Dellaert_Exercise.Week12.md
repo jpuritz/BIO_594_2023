@@ -638,6 +638,9 @@ s.class(pca1$li, pop(my_genind),xax=1,yax=2, col=col, axesell=FALSE, cstar=0, cp
 
 ![PopStruct_2.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_2.png?raw=true)
 
+
+#### 3 clusters 
+
 ```R
 #DAPC
 
@@ -675,7 +678,7 @@ compoplot(dapc1, posi="bottomright",txt.leg=paste("Cluster", 1:3), lab="", ncol=
 
 ![PopStruct_9.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_9.png?raw=true)
 
-5 clusters:
+#### 5 clusters:
 
 ```R
 #DAPC
@@ -713,7 +716,10 @@ contrib
 compoplot(dapc1, posi="bottomright",txt.leg=paste("Cluster", 1:5), lab="", ncol=1, xlab="individuals")
 ```
 
-![PopStruct_12.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/simulated/PopStruct_12.png?raw=true)
+![PopStruct_12.png](https://github.com/jpuritz/BIO_594_2023/blob/main/Exercises_ProbSets/Week12/Dellaert/realdata/PopStruct_12.png?raw=true)
+
+
+#### Library effects
 
 ``R
 setPop(my_genind) <- ~Library
