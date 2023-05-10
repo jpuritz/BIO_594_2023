@@ -18,3 +18,88 @@ This means that all files and directories should match.  This will help when one
 
 # DAPC
 
+Import the vcf file into R studio
+
+```my_vcf <- read.vcfR("BFT.filtered.vcf")```
+
+Output:
+Scanning file to determine attributes.
+File attributes:
+  meta lines: 64
+header_line: 65
+variant count: 2139
+column count: 343
+Meta line 64 read in.
+All meta lines processed.
+gt matrix initialized.
+Character matrix gt created.
+Character matrix gt rows: 2139
+Character matrix gt cols: 343
+skip: 0
+nrows: 2139
+row_num: 0
+Processed variant: 2139
+All variants processed
+
+```my_genind <- vcfR2genind(my_vcf)
+X <- tab(my_genind, freq = TRUE, NA.method = "mean")
+
+grp <- find.clusters(my_genind, max.n.clust=40)
+```
+
+Output:
+![PCA Variance Explanation](https://github.com/jpuritz/BIO_594_2023/assets/100792777/96ea4d6f-aadf-40f2-b413-b2319797d4da)
+
+Choose the number PCs to retain (>= 1): 
+  250
+
+**It looks like there is a plataeu starting at around 250 so I chose that number**
+
+![BIC vs  Clusters](https://github.com/jpuritz/BIO_594_2023/assets/100792777/e387f94c-8445-4897-9598-d52315f6e091)
+
+Choose the number of clusters (>=2): 
+  5
+
+**Low BIC value but 2 gave me a weird graph so I bumped it up**
+
+```dapc1 <- dapc(X, grp$grp,n.pca= NULL, n.da= NULL, var.contrib = TRUE, scale = FALSE)
+```
+
+Output: 
+Choose the number PCs to retain (>=1): 250
+Choose the number discriminant functions to retain (>=1): 4
+![Eigenvalues](https://github.com/jpuritz/BIO_594_2023/assets/100792777/88c04d4b-9fac-443f-b7b5-2dbb23e391ef)
+
+
+**We can include all 4 groups**
+
+```scatter(dapc1)
+summary(dapc1)
+```
+Output:
+![DAPC](https://github.com/jpuritz/BIO_594_2023/assets/100792777/90dfcb22-8f4f-49d4-88ba-15cebd41196f)
+
+
+$n.dim
+$n.dim
+[1] 4
+
+$n.pop
+[1] 5
+
+$assign.prop
+[1] 1
+
+$assign.per.pop
+1 2 3 4 5 
+1 1 1 1 1 
+
+$prior.grp.size
+
+1  2  3  4  5 
+58 80 85 82 29 
+
+$post.grp.size
+
+1  2  3  4  5 
+58 80 85 82 29 
