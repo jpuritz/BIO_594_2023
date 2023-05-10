@@ -17,6 +17,176 @@ We are breaking up the final project into multiple `.Rmd` files, but they will b
 This means that all files and directories should match.  This will help when one section depends on data from another.
 
 # Outlier Analysis
-## BayPass
+There are a number of ways to find outlier loci, and because of this many studies use two or more methods of discovering outliers. This project will be looking at data from Dimens et al. 2023 using baypass and outflank.
+## Baypass
+
+Getting necessary R packages
+```{r}
+library(corrplot)
+library(ape)
+source("baypass_utils.R") 
+```
+
+Running baypass with the following parameters:
+Number of threads: 20
+Number of samples to generate: 10000
+Burn-in length: 10000
+Pilot run length: 1000
+```{bash}
+baypass -gfile inputfiles/bft.kinless.baypass -nthreads 20 -outprefix bft -nval 10000 -burnin 10000 -pilotlength 1000
+```
+
+Reading baypass output into a table
+```{r}
+bft.omega <- as.matrix(read.table("bft_mat_omega.out"))
+```
+
+Changing row and column names to match populations
+```{r}
+popnames <- c("BRZ", "BRZSP","KEY","MRT","PNS","PR","SCA","TX","VZ")
+colnames(bft.omega) <- popnames
+rownames(bft.omega) <- popnames
+```
+
+Plotting Correlation Matrix
+```{r}
+cor.mat <- cov2cor(bft.omega)
+corrplot(
+  cor.mat,method="color",mar=c(2,1,2,2)+0.1,
+  main=expression("Correlation map based on"~hat(Omega))
+)
+```
+
+Plotting correlation data as a tree
+```{r}
+bft.tree <- as.phylo(hclust(as.dist(1-cor.mat**2)))
+plot(
+  bft.tree,type="p",
+  main=expression("Hier. clust. tree based on"~hat(Omega)~"("*d[ij]*"=1-"*rho[ij]*")")
+)
+```
+
+Read xtx baypass output and get Pi Beta distribution for POD generation
+```{r}
+snp.res <- read.table("bft_summary_pi_xtx.out", h=T)
+```
+
+Reupload data to get counts
+```{r}
+bft.data <- geno2YN("/inputfiles/bft.kinless.baypass")
+```
+
+Creating simulated data
+```{r}
+bft.sims <- simulate.baypass(
+  omega.mat=bft.omega,nsnp=10000,sample.size=bft.data$NN,
+  beta.pi=pi.beta.coef,pi.maf=0,suffix="bft.simulations.baypass"
+)
+```
+
+Analyzing simulated data
+```{bash}
+baypass -gfile G.bft.simulations.baypass -nthreads 20 -outprefix bft.sim -nval 10000 -burnin 10000 -pilotlength 1000
+```
+
+Compare omega matrix with original
+```{r}
+pod.omega <- as.matrix(read.table("bft.sim_mat_omega.out"))
+plot(pod.omega,bft.omega)
+abline(a=0,b=1)
+```
+
+Checking simularity between original and simulated data by looking at the Forstner and Moonen Distance (FMD)
+```{r}
+fmd.dist(pod.omega,bft.omega)
+```
+
+Plot POD xtx values, and identify SNPs where the xtx values are above the 99% significance threshold from the POD (those above the line)
+```{r}
+pod.xtx <- read.table("bft.sim_summary_pi_xtx.out",h=T)$M_XtX
+pod.thresh <- quantile(pod.xtx,probs=0.99)
+plot(snp.res$M_XtX)
+abline(h=pod.thresh,lty=2)
+```
+
+Save SNP scores
+```{r}
+snp.scores <- data.frame(snp_idx = 1:nrow(snp.res), M_XtX = snp.res$M_XtX, outlier = snp.res$M_XtX > pod.thresh)
+```
+
+Save outlier SNPs
+```{r}
+outliers <- snp.scores[snp.scores$outlier,1]
+snp.names <- readLines("/inputfiles/snp.names")
+outlier.snps <- snp.names[outliers]
+outlier.snps
+length(outlier.snps)
+```
+
+Save outliers to file
+```{r}
+write.table(outlier.snps, file = "baypass.outliers.loci",row.names = F, col.names = F, quote = F)
+```
+
 ## Outflank
+The second outlier analysis test used was outflank which was run in R
+This was run locally as Kitt was out of date and I had no way of updating it
+
+Getting necessary packages
+```{r}
+library("dartR")
+library("ggplot2")
+library("dplyr")
+```
+
+Defining population names and getting input file
+```{r}
+infile <- "/inputfiles/bft.kinless.gen"
+pop_names <- c("BRZ","BRZSP","KEY", "MRT", "PNS", "PR", "SCA", "TX", "VZ")
+full_dataset <- import2genind(infile, ncode = 3L, quiet = T)
+popNames(full_dataset) <- pop_names
+```
+
+Run OutFlank with the following parameters:
+Minimum Heterozygosity: 0.01
+False Discovery Threshold: 0.05
+Percent of Loci Trimmed from lower Fst Range: 0.05
+Percent of Loci Trimmed from upper Fst Range: 0.05
+```{r}
+options(repr.plot.width=15, repr.plot.height=7)
+full_outflnk <- gl.outflank(
+    full_dataset, 
+    Hmin= 0.01, 
+    qthreshold = 0.05, 
+    LeftTrimFraction = 0.05,
+    RightTrimFraction = 0.05
+)
+```
+
+Save Results
+```{r}
+full_outflnk
+```
+
+Remove Duplicates
+```{r}
+toRemove <- seq(1, nrow(full_outflnk), by=2)
+full_outflnk <- full_outflnk[-toRemove, ]
+```
+
+Identify outliers and save them to dataframe
+```{r}
+out_index <- which(full_outflnk$OutlierFlag==TRUE)
+outflank_names <- locNames(full_dataset)[out_index]
+length(outflank_names)
+head(outflank_names)
+```
+
+Save Outliers and outflank analysis to spreadsheet
+```{r}
+write.csv(full_outflnk, file = "outflank.csv", row.names = FALSE)
+write.table(outflank_names, file = "outflank.outliers.loci", row.names = F, col.names = F, quote = F)
+```
+
+All of this is what I would've actually done if my virtual environment, computer and the gods themselves thought it would be funny if I couldn't run the code. When I downloaded BayPass from the website and followed the manual, I could not get it to compile as the src folder was missing from the newest version and versions 2.3 and 2.2. Meanwhile the package dartR was missing some necessary packages that I could install, it apparently didn't work because some packages didn't work with my version of R despite the fact that my version is up to date, and according to their website it should work. Even downloading straight from the website failed as well. I tried doing this in both the kitt server and my local disk, with no luck. However, I still went through the analyses to make sure I understood what was going on to the best of my ability and tried to demonstrate that with my comments. 
 
