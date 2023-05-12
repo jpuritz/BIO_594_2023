@@ -17,6 +17,34 @@ We are breaking up the final project into multiple `.Rmd` files, but they will b
 This means that all files and directories should match.  This will help when one section depends on data from another.
 
 # Outlier Analysis
+
 ## Bayescan
+
+I downloaded bft.kinless.bayescan from the github repo (Final_Project/inputfiles/bft.kinless.bayescan) into a new directory named Bayescan in the Final_Project folder of BIO_594_2023 in the Kitt server
+
+<code> curl https://raw.githubusercontent.com/jpuritz/BIO_594_2023/main/Final_Project/inputfiles/bft.kinless.bayescan >bft.kinless.bayescan </code>
+
+I then ran Bayescan in the Kitt server
+
+<code> BayeScan2.1_linux64bits bft.kinless.bayescan -nbp 30 -thin 20 </code> 
+
+Which yielded, after a long ~45 minutes of calculations, the following files 
+
+<code> bft.kinless.baye_AccRte.txt  bft.kinless.baye_fst.txt  bft.kinless.bayescan  bft.kinless.baye.sel  bft.kinless.baye_Verif.txt </code> 
+
+I copied the R source file into the folder "Bayescan" which held the Bayescan output 
+
+<code> cp /home/BIO594/DATA/Week7/example/plot_R.r . </code>
+
+I then opened Rstudio in the Kitt server and imported the fst file for visualization 
+
+<code> source("plot_R.r") </code>
+<code> plot_bayescan("bft.kinless.baye_fst.txt") </code>
+
+Which yielded this plot 
+![tatlanticus_bayescan_reanalysis](https://github.com/jpuritz/BIO_594_2023/assets/102082342/a8262855-a8c4-4721-b7e8-c3e5c8dd429b)
+
+
+
 ## Synthesizing all results
 
