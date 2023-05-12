@@ -22,24 +22,33 @@ This means that all files and directories should match.  This will help when one
 
 I downloaded bft.kinless.bayescan from the github repo (Final_Project/inputfiles/bft.kinless.bayescan) into a new directory named Bayescan in the Final_Project folder of BIO_594_2023 in the Kitt server
 
-<code> curl https://raw.githubusercontent.com/jpuritz/BIO_594_2023/main/Final_Project/inputfiles/bft.kinless.bayescan >bft.kinless.bayescan </code>
+```{r import}
+curl https://raw.githubusercontent.com/jpuritz/BIO_594_2023/main/Final_Project/inputfiles/bft.kinless.bayescan >bft.kinless.bayescan 
+```
 
 I then ran Bayescan in the Kitt server
 
-<code> BayeScan2.1_linux64bits bft.kinless.bayescan -nbp 30 -thin 20 </code> 
+```{r bayescan}
+BayeScan2.1_linux64bits bft.kinless.bayescan -nbp 30 -thin 20 
+```
 
 Which yielded, after a long ~45 minutes of calculations, the following files 
 
-<code> bft.kinless.baye_AccRte.txt  bft.kinless.baye_fst.txt  bft.kinless.bayescan  bft.kinless.baye.sel  bft.kinless.baye_Verif.txt </code> 
-
+```{r bayeresults}
+bft.kinless.baye_AccRte.txt  bft.kinless.baye_fst.txt  bft.kinless.bayescan  bft.kinless.baye.sel  bft.kinless.baye_Verif.txt 
+```
 I copied the R source file into the folder "Bayescan" which held the Bayescan output 
 
-<code> cp /home/BIO594/DATA/Week7/example/plot_R.r . </code>
+```{r rstudio}
+cp /home/BIO594/DATA/Week7/example/plot_R.r . 
+```
 
 I then opened Rstudio in the Kitt server and imported the fst file for visualization 
 
-<code> source("plot_R.r") </code>
-<code> plot_bayescan("bft.kinless.baye_fst.txt") </code>
+```{r bayeplot}
+source("plot_R.r") 
+plot_bayescan("bft.kinless.baye_fst.txt")
+```
 
 Which yielded this plot with the following outliers: 
 
