@@ -41,10 +41,16 @@ I then opened Rstudio in the Kitt server and imported the fst file for visualiza
 <code> source("plot_R.r") </code>
 <code> plot_bayescan("bft.kinless.baye_fst.txt") </code>
 
-Which yielded this plot 
+Which yielded this plot with the following outliers: 
+
 ![tatlanticus_bayescan_reanalysis](https://github.com/jpuritz/BIO_594_2023/assets/102082342/a8262855-a8c4-4721-b7e8-c3e5c8dd429b)
 
+$outliers
+ [1]  165  335  373  428  465  548  636  643  654  747  799  880  907  967 1081 1086 1117 1170 1402 1433 1789 1793 1864 1905 1910 1941
+[27] 2129 2130
 
+$nb_outliers
+[1] 28
 
 ## Synthesizing all results
 
